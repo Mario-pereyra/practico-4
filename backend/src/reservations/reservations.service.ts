@@ -83,6 +83,19 @@ export class ReservationsService {
   }
 
   async create(userId: string, dto: CreateReservationDto) {
+    if (!dto.seatIds || dto.seatIds.length === 0) {
+      throw new BadRequestException('Debe seleccionar al menos un asiento.');
+    }
+
+    if (dto.seatIds.length > 20) {
+      throw new BadRequestException('No se pueden reservar más de 20 asientos por transacción.');
+    }
+
+    const uniqueSeatIds = new Set(dto.seatIds);
+    if (uniqueSeatIds.size !== dto.seatIds.length) {
+      throw new BadRequestException('No se permiten asientos duplicados en la misma reserva.');
+    }
+
     const showtime = await this.showtimeRepository.findOne({
       where: { id: dto.showtimeId },
     });
@@ -111,55 +124,68 @@ export class ReservationsService {
     }
 
     // Run transaction
-    return this.dataSource.transaction(async (manager) => {
-      // Locking row selection to prevent double bookings
-      const duplicateBookings = await manager
-        .createQueryBuilder(ReservationSeat, 'rs')
-        .setLock('pessimistic_write')
-        .where('rs.showtimeId = :showtimeId', { showtimeId: dto.showtimeId })
-        .andWhere('rs.seatId IN (:...seatIds)', { seatIds: dto.seatIds })
-        .getMany();
+    try {
+      return await this.dataSource.transaction(async (manager) => {
+        // Locking row selection to prevent double bookings
+        const duplicateBookings = await manager
+          .createQueryBuilder(ReservationSeat, 'rs')
+          .setLock('pessimistic_write')
+          .where('rs.showtimeId = :showtimeId', { showtimeId: dto.showtimeId })
+          .andWhere('rs.seatId IN (:...seatIds)', { seatIds: dto.seatIds })
+          .getMany();
 
-      if (duplicateBookings.length > 0) {
-        const takenSeatIds = duplicateBookings.map((db) => db.seatId);
-        const takenSeats = seats.filter((s) => takenSeatIds.includes(s.id));
-        const takenSeatCodes = takenSeats.map((s) => s.code).join(', ');
-        throw new ConflictException(
-          `Uno o más asientos seleccionados (${takenSeatCodes}) ya han sido reservados por otro usuario.`,
-        );
-      }
+        if (duplicateBookings.length > 0) {
+          const takenSeatIds = duplicateBookings.map((db) => db.seatId);
+          const takenSeats = seats.filter((s) => takenSeatIds.includes(s.id));
+          const takenSeatCodes = takenSeats.map((s) => s.code).join(', ');
+          throw new ConflictException({
+            statusCode: 409,
+            code: 'SEAT_ALREADY_RESERVED',
+            message: `Uno o más asientos seleccionados (${takenSeatCodes}) ya han sido reservados por otro usuario.`,
+          });
+        }
 
-      const total = seats.length * Number(showtime.price);
+        const total = seats.length * Number(showtime.price);
 
-      const reservation = manager.create(Reservation, {
-        userId,
-        showtimeId: dto.showtimeId,
-        total,
-        currency: 'BOB',
-      });
-
-      const savedReservation = await manager.save(Reservation, reservation);
-
-      const reservationSeats = seats.map((seat) =>
-        manager.create(ReservationSeat, {
-          reservationId: savedReservation.id,
+        const reservation = manager.create(Reservation, {
+          userId,
           showtimeId: dto.showtimeId,
-          seatId: seat.id,
-          unitPrice: showtime.price,
-        }),
-      );
+          total,
+          currency: 'BOB',
+        });
 
-      await manager.save(ReservationSeat, reservationSeats);
+        const savedReservation = await manager.save(Reservation, reservation);
 
-      return {
-        id: savedReservation.id,
-        userId: savedReservation.userId,
-        showtimeId: savedReservation.showtimeId,
-        reservedAt: savedReservation.reservedAt,
-        total: savedReservation.total,
-        currency: savedReservation.currency,
-        seats: seats.map((s) => ({ id: s.id, code: s.code })),
-      };
-    });
+        const reservationSeats = seats.map((seat) =>
+          manager.create(ReservationSeat, {
+            reservationId: savedReservation.id,
+            showtimeId: dto.showtimeId,
+            seatId: seat.id,
+            unitPrice: showtime.price,
+          }),
+        );
+
+        await manager.save(ReservationSeat, reservationSeats);
+
+        return {
+          id: savedReservation.id,
+          userId: savedReservation.userId,
+          showtimeId: savedReservation.showtimeId,
+          reservedAt: savedReservation.reservedAt,
+          total: savedReservation.total,
+          currency: savedReservation.currency,
+          seats: seats.map((s) => ({ id: s.id, code: s.code })),
+        };
+      });
+    } catch (err: any) {
+      if (err.code === '23505') {
+        throw new ConflictException({
+          statusCode: 409,
+          code: 'SEAT_ALREADY_RESERVED',
+          message: 'Uno o más asientos seleccionados ya han sido reservados por otro usuario.',
+        });
+      }
+      throw err;
+    }
   }
 }

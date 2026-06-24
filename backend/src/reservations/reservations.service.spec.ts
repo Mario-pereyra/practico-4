@@ -171,5 +171,49 @@ describe('ReservationsService', () => {
       expect(result.total).toBe(90.0);
       expect(result.seats).toHaveLength(2);
     });
+
+    it('should throw BadRequestException if more than 20 seats are selected', async () => {
+      const tooManySeatsDto = {
+        showtimeId: 'showtime-id',
+        seatIds: Array.from({ length: 21 }, (_, i) => `seat-${i}`),
+      };
+      await expect(service.create('user-id', tooManySeatsDto)).rejects.toThrow(BadRequestException);
+    });
+
+    it('should throw BadRequestException if duplicate seats are selected', async () => {
+      const duplicateSeatsDto = {
+        showtimeId: 'showtime-id',
+        seatIds: ['seat-1', 'seat-1'],
+      };
+      await expect(service.create('user-id', duplicateSeatsDto)).rejects.toThrow(BadRequestException);
+    });
+
+    it('should translate database unique constraint violation (code 23505) to ConflictException with SEAT_ALREADY_RESERVED', async () => {
+      showtimeRepositoryMock.findOne.mockResolvedValue({
+        id: 'showtime-id',
+        roomId: 'room-id',
+        startsAt: new Date(Date.now() + 3600 * 1000),
+        price: 45.0,
+      });
+
+      seatRepositoryMock.find.mockResolvedValue([
+        { id: 'seat-1', roomId: 'room-id', code: 'A1' },
+      ]);
+
+      managerMock.createQueryBuilder().getMany.mockResolvedValue([]);
+      
+      const dbError = new Error('Unique constraint violation');
+      (dbError as any).code = '23505';
+      managerMock.save.mockRejectedValue(dbError);
+
+      await expect(service.create('user-id', { showtimeId: 'showtime-id', seatIds: ['seat-1'] }))
+        .rejects.toThrow(expect.objectContaining({
+          response: {
+            statusCode: 409,
+            code: 'SEAT_ALREADY_RESERVED',
+            message: 'Uno o más asientos seleccionados ya han sido reservados por otro usuario.',
+          }
+        }));
+    });
   });
 });
