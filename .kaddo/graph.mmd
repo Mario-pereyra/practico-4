@@ -1,0 +1,82 @@
+flowchart LR
+  business_business["Business"]
+  product_product["Product"]
+  tech_tech["Tech"]
+  delivery_delivery["Delivery"]
+  wi_WI_001["WI-001 Inicializar la estructura del monorepositorio"]
+  initiative_base_y_autenticaci_n["Base y Autenticación"]
+  candidate_WI_001["WI-001"]
+  wi_WI_002["WI-002 Implementar módulo de autenticación"]
+  code_backend_src_auth["backend/src/auth/**"]
+  candidate_WI_002["WI-002"]
+  wi_WI_003["WI-003 Crear seed y configuración de base de datos"]
+  code_backend_src_database["backend/src/database/**"]
+  candidate_WI_003["WI-003"]
+  wi_WI_004["WI-004 Implementar CRUD de películas y carga de pósteres"]
+  code_backend_src_movies["backend/src/movies/**"]
+  initiative_cat_logo_de_pel_culas_y_salas["Catálogo de Películas y Salas"]
+  candidate_WI_004["WI-004"]
+  wi_WI_005["WI-005 Implementar CRUD de salas y generación de asientos"]
+  code_backend_src_rooms["backend/src/rooms/**"]
+  candidate_WI_005["WI-005"]
+  wi_WI_006["WI-006 Implementar CRUD de funciones y prevención de solapamientos"]
+  code_backend_src_showtimes["backend/src/showtimes/**"]
+  initiative_programaci_n_de_funciones["Programación de Funciones"]
+  candidate_WI_006["WI-006"]
+  wi_WI_007["WI-007 Implementar listado de cartelera pública con filtros"]
+  code_frontend_src_pages_Movies_tsx["frontend/src/pages/Movies.tsx"]
+  initiative_cartelera_p_blica_y_detalle["Cartelera Pública y Detalle"]
+  candidate_WI_007["WI-007"]
+  wi_WI_008["WI-008 Implementar detalle de película y horarios de funciones"]
+  code_frontend_src_pages_MovieDetails_tsx["frontend/src/pages/MovieDetails.tsx"]
+  candidate_WI_008["WI-008"]
+  wi_WI_009["WI-009 Implementar visualización gráfica del mapa de asientos"]
+  code_frontend_src_pages_SeatsSelection_tsx["frontend/src/pages/SeatsSelection.tsx"]
+  initiative_selecci_n_de_asientos_y_reservas["Selección de Asientos y Reservas"]
+  candidate_WI_009["WI-009"]
+  wi_WI_010["WI-010 Implementar confirmación transaccional de reservas"]
+  code_backend_src_reservations["backend/src/reservations/**"]
+  candidate_WI_010["WI-010"]
+  wi_WI_011["WI-011 Implementar historial y detalle de reservas propias"]
+  code_frontend_src_pages_MyReservations_tsx["frontend/src/pages/MyReservations.tsx"]
+  candidate_WI_011["WI-011"]
+
+  business_business -->|informs| product_product
+  product_product -->|informs| tech_tech
+  tech_tech -->|informs| delivery_delivery
+  wi_WI_001 -->|belongs_to| initiative_base_y_autenticaci_n
+  candidate_WI_001 -->|materialized_as| wi_WI_001
+  wi_WI_002 -->|owns| code_backend_src_auth
+  wi_WI_002 -->|belongs_to| initiative_base_y_autenticaci_n
+  candidate_WI_002 -->|materialized_as| wi_WI_002
+  wi_WI_003 -->|owns| code_backend_src_database
+  wi_WI_003 -->|belongs_to| initiative_base_y_autenticaci_n
+  candidate_WI_003 -->|materialized_as| wi_WI_003
+  wi_WI_004 -->|owns| code_backend_src_movies
+  wi_WI_004 -->|belongs_to| initiative_cat_logo_de_pel_culas_y_salas
+  candidate_WI_004 -->|materialized_as| wi_WI_004
+  wi_WI_005 -->|owns| code_backend_src_rooms
+  wi_WI_005 -->|belongs_to| initiative_cat_logo_de_pel_culas_y_salas
+  candidate_WI_005 -->|materialized_as| wi_WI_005
+  wi_WI_006 -->|owns| code_backend_src_showtimes
+  wi_WI_006 -->|belongs_to| initiative_programaci_n_de_funciones
+  candidate_WI_006 -->|materialized_as| wi_WI_006
+  wi_WI_007 -->|owns| code_backend_src_movies
+  wi_WI_007 -->|owns| code_frontend_src_pages_Movies_tsx
+  wi_WI_007 -->|belongs_to| initiative_cartelera_p_blica_y_detalle
+  candidate_WI_007 -->|materialized_as| wi_WI_007
+  wi_WI_008 -->|owns| code_backend_src_movies
+  wi_WI_008 -->|owns| code_frontend_src_pages_MovieDetails_tsx
+  wi_WI_008 -->|belongs_to| initiative_cartelera_p_blica_y_detalle
+  candidate_WI_008 -->|materialized_as| wi_WI_008
+  wi_WI_009 -->|owns| code_backend_src_showtimes
+  wi_WI_009 -->|owns| code_frontend_src_pages_SeatsSelection_tsx
+  wi_WI_009 -->|belongs_to| initiative_selecci_n_de_asientos_y_reservas
+  candidate_WI_009 -->|materialized_as| wi_WI_009
+  wi_WI_010 -->|owns| code_backend_src_reservations
+  wi_WI_010 -->|belongs_to| initiative_selecci_n_de_asientos_y_reservas
+  candidate_WI_010 -->|materialized_as| wi_WI_010
+  wi_WI_011 -->|owns| code_backend_src_reservations
+  wi_WI_011 -->|owns| code_frontend_src_pages_MyReservations_tsx
+  wi_WI_011 -->|belongs_to| initiative_selecci_n_de_asientos_y_reservas
+  candidate_WI_011 -->|materialized_as| wi_WI_011

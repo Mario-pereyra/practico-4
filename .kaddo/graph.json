@@ -1,0 +1,461 @@
+{
+  "generated_at": "2026-06-24T22:04:24.292Z",
+  "project": {
+    "name": "practico-4",
+    "state": "new",
+    "structure": "monorepo"
+  },
+  "scope": "all",
+  "scope_reason": "All supported Work Item statuses are included.",
+  "included_statuses": [
+    "draft",
+    "ready",
+    "in-progress",
+    "blocked",
+    "completed"
+  ],
+  "excluded_statuses": [
+    "archived"
+  ],
+  "nodes": [
+    {
+      "id": "business:business",
+      "type": "business",
+      "label": "Business",
+      "path": "knowledge/business/business.md"
+    },
+    {
+      "id": "product:product",
+      "type": "product",
+      "label": "Product",
+      "path": "knowledge/product/product.md"
+    },
+    {
+      "id": "tech:tech",
+      "type": "tech",
+      "label": "Tech",
+      "path": "knowledge/tech/codebase.md"
+    },
+    {
+      "id": "delivery:delivery",
+      "type": "delivery",
+      "label": "Delivery",
+      "path": "knowledge/delivery/roadmap.md"
+    },
+    {
+      "id": "wi:WI-001",
+      "type": "work-item",
+      "label": "WI-001 Inicializar la estructura del monorepositorio",
+      "path": "knowledge/delivery/work-items/completed/WI-001-inicializar-la-estructura-del-monorepositorio.md",
+      "status": "completed",
+      "knowledge_level": "K0"
+    },
+    {
+      "id": "initiative:base-y-autenticaci-n",
+      "type": "initiative",
+      "label": "Base y Autenticación"
+    },
+    {
+      "id": "candidate:WI-001",
+      "type": "roadmap-candidate",
+      "label": "WI-001"
+    },
+    {
+      "id": "wi:WI-002",
+      "type": "work-item",
+      "label": "WI-002 Implementar módulo de autenticación",
+      "path": "knowledge/delivery/work-items/completed/WI-002-implementar-modulo-de-autenticacion.md",
+      "status": "completed",
+      "knowledge_level": "K3"
+    },
+    {
+      "id": "code:backend/src/auth/**",
+      "type": "code-glob",
+      "label": "backend/src/auth/**"
+    },
+    {
+      "id": "candidate:WI-002",
+      "type": "roadmap-candidate",
+      "label": "WI-002"
+    },
+    {
+      "id": "wi:WI-003",
+      "type": "work-item",
+      "label": "WI-003 Crear seed y configuración de base de datos",
+      "path": "knowledge/delivery/work-items/completed/WI-003-crear-seed-y-configuracion-de-base-de-datos.md",
+      "status": "completed",
+      "knowledge_level": "K2"
+    },
+    {
+      "id": "code:backend/src/database/**",
+      "type": "code-glob",
+      "label": "backend/src/database/**"
+    },
+    {
+      "id": "candidate:WI-003",
+      "type": "roadmap-candidate",
+      "label": "WI-003"
+    },
+    {
+      "id": "wi:WI-004",
+      "type": "work-item",
+      "label": "WI-004 Implementar CRUD de películas y carga de pósteres",
+      "path": "knowledge/delivery/work-items/completed/WI-004-implementar-crud-de-peliculas-y-carga-de-posteres.md",
+      "status": "completed",
+      "knowledge_level": "K3"
+    },
+    {
+      "id": "code:backend/src/movies/**",
+      "type": "code-glob",
+      "label": "backend/src/movies/**"
+    },
+    {
+      "id": "initiative:cat-logo-de-pel-culas-y-salas",
+      "type": "initiative",
+      "label": "Catálogo de Películas y Salas"
+    },
+    {
+      "id": "candidate:WI-004",
+      "type": "roadmap-candidate",
+      "label": "WI-004"
+    },
+    {
+      "id": "wi:WI-005",
+      "type": "work-item",
+      "label": "WI-005 Implementar CRUD de salas y generación de asientos",
+      "path": "knowledge/delivery/work-items/completed/WI-005-implementar-crud-de-salas-y-generacion-de-asientos.md",
+      "status": "completed",
+      "knowledge_level": "K3"
+    },
+    {
+      "id": "code:backend/src/rooms/**",
+      "type": "code-glob",
+      "label": "backend/src/rooms/**"
+    },
+    {
+      "id": "candidate:WI-005",
+      "type": "roadmap-candidate",
+      "label": "WI-005"
+    },
+    {
+      "id": "wi:WI-006",
+      "type": "work-item",
+      "label": "WI-006 Implementar CRUD de funciones y prevención de solapamientos",
+      "path": "knowledge/delivery/work-items/completed/WI-006-implementar-crud-de-funciones-y-prevencion-de-solapamientos.md",
+      "status": "completed",
+      "knowledge_level": "K4"
+    },
+    {
+      "id": "code:backend/src/showtimes/**",
+      "type": "code-glob",
+      "label": "backend/src/showtimes/**"
+    },
+    {
+      "id": "initiative:programaci-n-de-funciones",
+      "type": "initiative",
+      "label": "Programación de Funciones"
+    },
+    {
+      "id": "candidate:WI-006",
+      "type": "roadmap-candidate",
+      "label": "WI-006"
+    },
+    {
+      "id": "wi:WI-007",
+      "type": "work-item",
+      "label": "WI-007 Implementar listado de cartelera pública con filtros",
+      "path": "knowledge/delivery/work-items/completed/WI-007-implementar-listado-de-cartelera-publica-con-filtros.md",
+      "status": "completed",
+      "knowledge_level": "K2"
+    },
+    {
+      "id": "code:frontend/src/pages/Movies.tsx",
+      "type": "code-glob",
+      "label": "frontend/src/pages/Movies.tsx"
+    },
+    {
+      "id": "initiative:cartelera-p-blica-y-detalle",
+      "type": "initiative",
+      "label": "Cartelera Pública y Detalle"
+    },
+    {
+      "id": "candidate:WI-007",
+      "type": "roadmap-candidate",
+      "label": "WI-007"
+    },
+    {
+      "id": "wi:WI-008",
+      "type": "work-item",
+      "label": "WI-008 Implementar detalle de película y horarios de funciones",
+      "path": "knowledge/delivery/work-items/completed/WI-008-implementar-detalle-de-pelicula-y-horarios-de-funciones.md",
+      "status": "completed",
+      "knowledge_level": "K2"
+    },
+    {
+      "id": "code:frontend/src/pages/MovieDetails.tsx",
+      "type": "code-glob",
+      "label": "frontend/src/pages/MovieDetails.tsx"
+    },
+    {
+      "id": "candidate:WI-008",
+      "type": "roadmap-candidate",
+      "label": "WI-008"
+    },
+    {
+      "id": "wi:WI-009",
+      "type": "work-item",
+      "label": "WI-009 Implementar visualización gráfica del mapa de asientos",
+      "path": "knowledge/delivery/work-items/completed/WI-009-implementar-visualizacion-grafica-del-mapa-de-asientos.md",
+      "status": "completed",
+      "knowledge_level": "K3"
+    },
+    {
+      "id": "code:frontend/src/pages/SeatsSelection.tsx",
+      "type": "code-glob",
+      "label": "frontend/src/pages/SeatsSelection.tsx"
+    },
+    {
+      "id": "initiative:selecci-n-de-asientos-y-reservas",
+      "type": "initiative",
+      "label": "Selección de Asientos y Reservas"
+    },
+    {
+      "id": "candidate:WI-009",
+      "type": "roadmap-candidate",
+      "label": "WI-009"
+    },
+    {
+      "id": "wi:WI-010",
+      "type": "work-item",
+      "label": "WI-010 Implementar confirmación transaccional de reservas",
+      "path": "knowledge/delivery/work-items/completed/WI-010-implementar-confirmacion-transaccional-de-reservas.md",
+      "status": "completed",
+      "knowledge_level": "K4"
+    },
+    {
+      "id": "code:backend/src/reservations/**",
+      "type": "code-glob",
+      "label": "backend/src/reservations/**"
+    },
+    {
+      "id": "candidate:WI-010",
+      "type": "roadmap-candidate",
+      "label": "WI-010"
+    },
+    {
+      "id": "wi:WI-011",
+      "type": "work-item",
+      "label": "WI-011 Implementar historial y detalle de reservas propias",
+      "path": "knowledge/delivery/work-items/completed/WI-011-implementar-historial-y-detalle-de-reservas-propias.md",
+      "status": "completed",
+      "knowledge_level": "K2"
+    },
+    {
+      "id": "code:frontend/src/pages/MyReservations.tsx",
+      "type": "code-glob",
+      "label": "frontend/src/pages/MyReservations.tsx"
+    },
+    {
+      "id": "candidate:WI-011",
+      "type": "roadmap-candidate",
+      "label": "WI-011"
+    }
+  ],
+  "edges": [
+    {
+      "from": "business:business",
+      "to": "product:product",
+      "type": "informs"
+    },
+    {
+      "from": "product:product",
+      "to": "tech:tech",
+      "type": "informs"
+    },
+    {
+      "from": "tech:tech",
+      "to": "delivery:delivery",
+      "type": "informs"
+    },
+    {
+      "from": "wi:WI-001",
+      "to": "initiative:base-y-autenticaci-n",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-001",
+      "to": "wi:WI-001",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-002",
+      "to": "code:backend/src/auth/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-002",
+      "to": "initiative:base-y-autenticaci-n",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-002",
+      "to": "wi:WI-002",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-003",
+      "to": "code:backend/src/database/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-003",
+      "to": "initiative:base-y-autenticaci-n",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-003",
+      "to": "wi:WI-003",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-004",
+      "to": "code:backend/src/movies/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-004",
+      "to": "initiative:cat-logo-de-pel-culas-y-salas",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-004",
+      "to": "wi:WI-004",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-005",
+      "to": "code:backend/src/rooms/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-005",
+      "to": "initiative:cat-logo-de-pel-culas-y-salas",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-005",
+      "to": "wi:WI-005",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-006",
+      "to": "code:backend/src/showtimes/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-006",
+      "to": "initiative:programaci-n-de-funciones",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-006",
+      "to": "wi:WI-006",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-007",
+      "to": "code:backend/src/movies/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-007",
+      "to": "code:frontend/src/pages/Movies.tsx",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-007",
+      "to": "initiative:cartelera-p-blica-y-detalle",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-007",
+      "to": "wi:WI-007",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-008",
+      "to": "code:backend/src/movies/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-008",
+      "to": "code:frontend/src/pages/MovieDetails.tsx",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-008",
+      "to": "initiative:cartelera-p-blica-y-detalle",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-008",
+      "to": "wi:WI-008",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-009",
+      "to": "code:backend/src/showtimes/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-009",
+      "to": "code:frontend/src/pages/SeatsSelection.tsx",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-009",
+      "to": "initiative:selecci-n-de-asientos-y-reservas",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-009",
+      "to": "wi:WI-009",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-010",
+      "to": "code:backend/src/reservations/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-010",
+      "to": "initiative:selecci-n-de-asientos-y-reservas",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-010",
+      "to": "wi:WI-010",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-011",
+      "to": "code:backend/src/reservations/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-011",
+      "to": "code:frontend/src/pages/MyReservations.tsx",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-011",
+      "to": "initiative:selecci-n-de-asientos-y-reservas",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-011",
+      "to": "wi:WI-011",
+      "type": "materialized_as"
+    }
+  ]
+}
