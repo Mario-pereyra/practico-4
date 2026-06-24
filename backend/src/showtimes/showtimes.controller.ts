@@ -20,6 +20,12 @@ export class ShowtimesController {
     return this.showtimesService.findOne(id);
   }
 
+  @Get(':showtimeId/seats')
+  @UseGuards(JwtAuthGuard)
+  async getSeatMap(@Param('showtimeId') showtimeId: string) {
+    return this.showtimesService.getSeatMap(showtimeId);
+  }
+
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN')

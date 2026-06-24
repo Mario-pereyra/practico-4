@@ -46,28 +46,44 @@ export const SeatSelection: React.FC = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        // Fetch showtime details
-        const stRes = await fetch(`${API_URL}/showtimes/${showtimeId}`);
-        if (stRes.ok) {
-          const stData = await stRes.json();
-          setShowtime(stData);
-        }
-
-        // Fetch seat map
-        const seatsRes = await fetch(`${API_URL}/reservations/showtime/${showtimeId}/seats`);
+        // Fetch seat map (includes showtime details)
+        const seatsRes = await fetch(`${API_URL}/showtimes/${showtimeId}/seats`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (seatsRes.ok) {
-          const seatsData = await seatsRes.json();
-          setSeats(seatsData);
+          const seatMapData = await seatsRes.json();
+          setShowtime({
+            id: seatMapData.showtimeId,
+            startsAt: seatMapData.startsAt,
+            price: seatMapData.price,
+            movie: seatMapData.movie,
+            room: seatMapData.room,
+          });
+          const mappedSeats = seatMapData.seats.map((s: any) => ({
+            id: s.id,
+            code: s.code,
+            rowLabel: s.rowLabel,
+            columnNumber: s.columnNumber,
+            isReserved: s.status === 'RESERVED',
+          }));
+          setSeats(mappedSeats);
+        } else {
+          setShowtime(null);
+          setSeats([]);
         }
       } catch (err) {
         console.error('Error fetching seat selection data', err);
+        setShowtime(null);
+        setSeats([]);
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [showtimeId, user, navigate, API_URL]);
+  }, [showtimeId, user, token, navigate, API_URL]);
 
   const handleSeatClick = (seat: Seat) => {
     if (seat.isReserved) return;
@@ -112,14 +128,26 @@ export const SeatSelection: React.FC = () => {
       setError(err.message);
       // Refresh seat map to show updated reserved seats in case of conflict
       try {
-        const seatsRes = await fetch(`${API_URL}/reservations/showtime/${showtimeId}/seats`);
+        const seatsRes = await fetch(`${API_URL}/showtimes/${showtimeId}/seats`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (seatsRes.ok) {
-          const seatsData = await seatsRes.json();
-          setSeats(seatsData);
+          const seatMapData = await seatsRes.json();
+          const mappedSeats = seatMapData.seats.map((s: any) => ({
+            id: s.id,
+            code: s.code,
+            rowLabel: s.rowLabel,
+            columnNumber: s.columnNumber,
+            isReserved: s.status === 'RESERVED',
+          }));
+          setSeats(mappedSeats);
+          
+          // Deselect seats that are now reserved
+          const reservedIds = new Set(mappedSeats.filter((s: any) => s.isReserved).map((s: any) => s.id));
+          setSelectedSeats(selectedSeats.filter(s => !reservedIds.has(s.id)));
         }
-        // Deselect seats that are now reserved
-        const reservedIds = new Set(seats.filter(s => s.isReserved).map(s => s.id));
-        setSelectedSeats(selectedSeats.filter(s => !reservedIds.has(s.id)));
       } catch (refreshErr) {
         console.error('Error refreshing seats', refreshErr);
       }

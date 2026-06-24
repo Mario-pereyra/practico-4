@@ -8,6 +8,8 @@ import { UpdateShowtimeDto } from './dto/update-showtime.dto';
 import { Movie } from '../movies/entities/movie.entity';
 import { Room } from '../rooms/entities/room.entity';
 import { Reservation } from '../reservations/entities/reservation.entity';
+import { Seat } from '../rooms/entities/seat.entity';
+import { ReservationSeat } from '../reservations/entities/reservation-seat.entity';
 
 @Injectable()
 export class ShowtimesService {
@@ -20,6 +22,10 @@ export class ShowtimesService {
     private readonly roomRepository: Repository<Room>,
     @InjectRepository(Reservation)
     private readonly reservationRepository: Repository<Reservation>,
+    @InjectRepository(Seat)
+    private readonly seatRepository: Repository<Seat>,
+    @InjectRepository(ReservationSeat)
+    private readonly reservationSeatRepository: Repository<ReservationSeat>,
   ) {}
 
   async findAll(movieId?: string, roomId?: string): Promise<Showtime[]> {
@@ -49,6 +55,77 @@ export class ShowtimesService {
       throw new NotFoundException(`La función con ID ${id} no existe.`);
     }
     return showtime;
+  }
+
+  async getSeatMap(showtimeId: string): Promise<any> {
+    const showtime = await this.showtimeRepository.findOne({
+      where: { id: showtimeId },
+      relations: { movie: true, room: true },
+    });
+
+    if (!showtime) {
+      throw new NotFoundException({
+        statusCode: 404,
+        code: 'SHOWTIME_NOT_FOUND',
+        message: 'La función no existe.',
+      });
+    }
+
+    const now = new Date();
+    if (showtime.startsAt.getTime() <= now.getTime()) {
+      throw new ConflictException({
+        statusCode: 409,
+        code: 'SHOWTIME_NOT_BOOKABLE',
+        message: 'La función ya inició o no admite nuevas reservas.',
+      });
+    }
+
+    const seats = await this.seatRepository.find({
+      where: { roomId: showtime.roomId },
+      order: {
+        rowLabel: 'ASC',
+        columnNumber: 'ASC',
+      },
+    });
+
+    const reservedSeats = await this.reservationSeatRepository.find({
+      where: { showtimeId },
+    });
+
+    const reservedSeatIds = new Set(reservedSeats.map((rs) => rs.seatId));
+
+    const mappedSeats = seats.map((seat) => ({
+      id: seat.id,
+      roomId: seat.roomId,
+      rowLabel: seat.rowLabel,
+      columnNumber: seat.columnNumber,
+      code: seat.code,
+      status: reservedSeatIds.has(seat.id) ? 'RESERVED' : 'AVAILABLE',
+    }));
+
+    return {
+      showtimeId: showtime.id,
+      movie: {
+        id: showtime.movie.id,
+        title: showtime.movie.title,
+        genre: showtime.movie.genre,
+        durationMinutes: showtime.movie.durationMinutes,
+        rating: showtime.movie.rating,
+        posterUrl: showtime.movie.posterUrl,
+      },
+      room: {
+        id: showtime.room.id,
+        name: showtime.room.name,
+        rows: showtime.room.rows,
+        columns: showtime.room.columns,
+        capacity: showtime.room.capacity,
+      },
+      startsAt: showtime.startsAt.toISOString(),
+      endsAt: showtime.endsAt.toISOString(),
+      price: Number(showtime.price),
+      currency: 'BOB',
+      seats: mappedSeats,
+    };
   }
 
   async create(dto: CreateShowtimeDto): Promise<Showtime> {
