@@ -38,8 +38,12 @@ export class ReservationsService {
     });
   }
 
-  async findByUser(userId: string): Promise<Reservation[]> {
-    return this.reservationRepository.find({
+  async findByUser(userId: string, page = 1, limit = 10): Promise<{ items: any[]; meta: any }> {
+    const pageNum = Math.max(1, Number(page) || 1);
+    const limitNum = Math.min(100, Math.max(1, Number(limit) || 10));
+    const skip = (pageNum - 1) * limitNum;
+
+    const [reservations, totalItems] = await this.reservationRepository.findAndCount({
       where: { userId },
       relations: {
         showtime: {
@@ -51,7 +55,73 @@ export class ReservationsService {
         },
       },
       order: { reservedAt: 'DESC' },
+      take: limitNum,
+      skip,
     });
+
+    const totalPages = Math.ceil(totalItems / limitNum);
+
+    return {
+      items: reservations.map((res) => this.mapToDetailSchema(res)),
+      meta: {
+        page: pageNum,
+        limit: limitNum,
+        totalItems,
+        totalPages,
+      },
+    };
+  }
+
+  async findOneByUser(reservationId: string, userId: string): Promise<any> {
+    const reservation = await this.reservationRepository.findOne({
+      where: { id: reservationId },
+      relations: {
+        showtime: {
+          movie: true,
+          room: true,
+        },
+        details: {
+          seat: true,
+        },
+      },
+    });
+
+    if (!reservation || reservation.userId !== userId) {
+      throw new NotFoundException({
+        statusCode: 404,
+        code: 'RESERVATION_NOT_FOUND',
+        message: 'La reserva no existe o no pertenece al usuario autenticado.',
+      });
+    }
+
+    return this.mapToDetailSchema(reservation);
+  }
+
+  private mapToDetailSchema(res: Reservation) {
+    return {
+      id: res.id,
+      showtime: {
+        id: res.showtime.id,
+        movieId: res.showtime.movie.id,
+        movieTitle: res.showtime.movie.title,
+        roomId: res.showtime.room.id,
+        roomName: res.showtime.room.name,
+        startsAt: res.showtime.startsAt.toISOString(),
+        endsAt: res.showtime.endsAt.toISOString(),
+        price: Number(res.showtime.price),
+        currency: 'BOB',
+      },
+      seats: res.details.map((d) => ({
+        seatId: d.seat.id,
+        rowLabel: d.seat.rowLabel,
+        columnNumber: d.seat.columnNumber,
+        code: d.seat.code,
+        unitPrice: Number(d.unitPrice),
+      })),
+      reservedAt: res.reservedAt.toISOString(),
+      total: Number(res.total),
+      currency: res.currency,
+    };
   }
 
   async getSeatMap(showtimeId: string) {

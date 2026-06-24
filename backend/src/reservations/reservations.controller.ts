@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Query, UseGuards } from '@nestjs/common';
 import { ReservationsService } from './reservations.service';
 import { CreateReservationDto } from './dto/create-reservation.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -18,10 +18,20 @@ export class ReservationsController {
     return this.reservationsService.findAll();
   }
 
-  @Get('me')
+  @Get('my')
   @UseGuards(JwtAuthGuard)
-  async findMe(@GetUser() user: User) {
-    return this.reservationsService.findByUser(user.id);
+  async findMy(
+    @GetUser() user: User,
+    @Query('page') page?: number,
+    @Query('limit') limit?: number,
+  ) {
+    return this.reservationsService.findByUser(user.id, page, limit);
+  }
+
+  @Get(':reservationId')
+  @UseGuards(JwtAuthGuard)
+  async findOne(@GetUser() user: User, @Param('reservationId') reservationId: string) {
+    return this.reservationsService.findOneByUser(reservationId, user.id);
   }
 
   @Get('showtime/:showtimeId/seats')

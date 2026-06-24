@@ -41,14 +41,15 @@ export const MyReservations: React.FC = () => {
     const fetchReservations = async () => {
       if (!token) return;
       try {
-        const res = await fetch(`${API_URL}/reservations/me`, {
+        const res = await fetch(`${API_URL}/reservations/my`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
         if (res.ok) {
           const data = await res.json();
-          setReservations(data);
+          const items = Array.isArray(data) ? data : (data.items || []);
+          setReservations(items);
         }
       } catch (err) {
         console.error('Error fetching reservations', err);
@@ -137,10 +138,13 @@ export const MyReservations: React.FC = () => {
                     </span>
                   </div>
 
-                  <div className="mt-4">
-                    <span className="reservation-seats-badge">
+                  <div className="mt-4" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <span className="reservation-seats-badge" style={{ alignSelf: 'flex-start' }}>
                       Butacas: {seatCodes}
                     </span>
+                    <Link to={`/my-reservations/${res.id}`} style={{ color: '#fbbf24', fontSize: '13px', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: '4px', marginTop: '4px' }}>
+                      Ver Ticket Digital <ChevronRight size={14} />
+                    </Link>
                   </div>
                 </div>
 

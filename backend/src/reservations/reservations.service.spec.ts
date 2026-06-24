@@ -22,6 +22,7 @@ describe('ReservationsService', () => {
     reservationRepositoryMock = {
       find: jest.fn(),
       findOne: jest.fn(),
+      findAndCount: jest.fn(),
     };
 
     reservationSeatRepositoryMock = {
@@ -214,6 +215,96 @@ describe('ReservationsService', () => {
             message: 'Uno o más asientos seleccionados ya han sido reservados por otro usuario.',
           }
         }));
+    });
+  });
+
+  describe('findByUser', () => {
+    it('should return paginated reservations and metadata', async () => {
+      const mockReservations = [
+        {
+          id: 'res-id',
+          userId: 'user-id',
+          reservedAt: new Date(),
+          total: 90.0,
+          currency: 'BOB',
+          showtime: {
+            id: 'showtime-id',
+            movie: { id: 'movie-id', title: 'Movie' },
+            room: { id: 'room-id', name: 'Room' },
+            startsAt: new Date(),
+            endsAt: new Date(),
+            price: 45.0,
+          },
+          details: [
+            { seat: { id: 'seat-1', rowLabel: 'A', columnNumber: 1, code: 'A1' }, unitPrice: 45.0 },
+          ],
+        },
+      ];
+      reservationRepositoryMock.findAndCount.mockResolvedValue([mockReservations, 1]);
+
+      const result = await service.findByUser('user-id', 1, 10);
+
+      expect(reservationRepositoryMock.findAndCount).toHaveBeenCalledWith(expect.objectContaining({
+        where: { userId: 'user-id' },
+        take: 10,
+        skip: 0,
+      }));
+      expect(result.items).toHaveLength(1);
+      expect(result.meta).toEqual({
+        page: 1,
+        limit: 10,
+        totalItems: 1,
+        totalPages: 1,
+      });
+    });
+  });
+
+  describe('findOneByUser', () => {
+    it('should throw NotFoundException if reservation does not exist', async () => {
+      reservationRepositoryMock.findOne.mockResolvedValue(null);
+      await expect(service.findOneByUser('res-id', 'user-id')).rejects.toThrow(NotFoundException);
+    });
+
+    it('should throw NotFoundException if reservation belongs to another user', async () => {
+      reservationRepositoryMock.findOne.mockResolvedValue({
+        id: 'res-id',
+        userId: 'other-user-id',
+      });
+      await expect(service.findOneByUser('res-id', 'user-id')).rejects.toThrow(NotFoundException);
+    });
+
+    it('should return reservation detail if it exists and belongs to the user', async () => {
+      const mockReservation = {
+        id: 'res-id',
+        userId: 'user-id',
+        reservedAt: new Date(),
+        total: 45.0,
+        currency: 'BOB',
+        showtime: {
+          id: 'showtime-id',
+          movie: { id: 'movie-id', title: 'Movie' },
+          room: { id: 'room-id', name: 'Room' },
+          startsAt: new Date(),
+          endsAt: new Date(),
+          price: 45.0,
+        },
+        details: [
+          { seat: { id: 'seat-1', rowLabel: 'A', columnNumber: 1, code: 'A1' }, unitPrice: 45.0 },
+        ],
+      };
+      reservationRepositoryMock.findOne.mockResolvedValue(mockReservation);
+
+      const result = await service.findOneByUser('res-id', 'user-id');
+
+      expect(reservationRepositoryMock.findOne).toHaveBeenCalledWith({
+        where: { id: 'res-id' },
+        relations: {
+          showtime: { movie: true, room: true },
+          details: { seat: true },
+        },
+      });
+      expect(result.id).toBe('res-id');
+      expect(result.showtime.movieTitle).toBe('Movie');
     });
   });
 });

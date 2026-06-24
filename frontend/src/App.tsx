@@ -6,6 +6,7 @@ import { MoviesCatalog } from './pages/MoviesCatalog';
 import { MovieDetails } from './pages/MovieDetails';
 import { SeatSelection } from './pages/SeatSelection';
 import { MyReservations } from './pages/MyReservations';
+import { ReservationDetail } from './pages/ReservationDetail';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
@@ -53,6 +54,14 @@ export const App: React.FC = () => {
               element={
                 <ProtectedRoute>
                   <MyReservations />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/my-reservations/:reservationId"
+              element={
+                <ProtectedRoute>
+                  <ReservationDetail />
                 </ProtectedRoute>
               }
             />
