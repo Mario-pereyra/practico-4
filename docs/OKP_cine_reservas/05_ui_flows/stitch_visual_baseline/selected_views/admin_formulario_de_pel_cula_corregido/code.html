@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CineAdmin - Crear Película</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container": "#edeeef",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#ffb68e",
+                        "text-muted": "#4B5563",
+                        "surface": "#f8f9fa",
+                        "on-secondary-container": "#596373",
+                        "primary-container": "#b45309",
+                        "on-tertiary-container": "#eef3ff",
+                        "secondary": "#555f6f",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#0072c0",
+                        "primary-fixed": "#ffdbca",
+                        "outline": "#897267",
+                        "on-surface": "#191c1d",
+                        "surface-container-highest": "#e1e3e4",
+                        "secondary-fixed": "#d9e3f6",
+                        "surface-white": "#FFFFFF",
+                        "surface-tint": "#9b4500",
+                        "primary-fixed-dim": "#ffb68e",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "background": "#f8f9fa",
+                        "on-surface-variant": "#564338",
+                        "on-tertiary-fixed-variant": "#00497e",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "text-main": "#111827",
+                        "surface-variant": "#e1e3e4",
+                        "surface-dim": "#d9dadb",
+                        "status-available": "#1E40AF",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#fff1eb",
+                        "status-confirmed": "#065F46",
+                        "on-secondary-fixed": "#121c2a",
+                        "on-primary-fixed": "#331200",
+                        "on-background": "#191c1d",
+                        "outline-variant": "#ddc1b3",
+                        "tertiary-fixed": "#d2e4ff",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#d6e0f3",
+                        "on-tertiary-fixed": "#001d36",
+                        "tertiary": "#005998",
+                        "on-primary-fixed-variant": "#763300",
+                        "tertiary-fixed-dim": "#9fcaff",
+                        "status-canceled": "#991B1B",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-high": "#e7e8e9",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f8f9fa",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f3f4f5",
+                        "status-reserved": "#92400E",
+                        "border-subtle": "#E5E7EB",
+                        "primary": "#903f00"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.125rem",
+                        lg: "0.25rem",
+                        xl: "0.5rem",
+                        full: "0.75rem"
+                    },
+                    spacing: {
+                        gutter: "1.5rem",
+                        "margin-mobile": "1rem",
+                        "container-max": "1280px",
+                        "stack-sm": "0.5rem",
+                        "stack-md": "1rem",
+                        "stack-lg": "2rem",
+                        "margin-desktop": "2rem"
+                    },
+                    fontFamily: {
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "label-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"]
+                    },
+                    fontSize: {
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "headline-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }],
+                        "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }]
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        body {
+            background-color: #f8f9fa; /* bg-background */
+        }
+        /* Custom scrollbar for minimal look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d9dadb;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #bdc7d9;
+        }
+        .file-upload-preview {
+            background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="%239CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 8L12 3L7 8" stroke="%239CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 3V15" stroke="%239CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 48px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface antialiased flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="bg-surface-container-lowest text-primary font-label-lg text-label-lg docked fixed left-0 top-0 h-full w-[280px] border-r border-border-subtle flat no shadows hidden lg:flex flex-col p-stack-md z-20">
+<!-- Header -->
+<div class="mb-stack-lg flex items-center gap-stack-sm px-4 pt-4">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">theaters</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">CineAdmin</h1>
+<p class="font-body-sm text-body-sm text-text-muted">Theater Management</p>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-secondary-container text-on-secondary-container font-semibold transition-all scale-95 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">movie</span>
+                Películas
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined">theater_comedy</span>
+                Salas
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined">schedule</span>
+                Funciones
+            </a>
+</nav>
+<!-- CTA -->
+<div class="mt-auto mb-stack-lg px-4">
+<button class="w-full bg-primary-container text-on-primary font-label-lg text-label-lg py-3 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add</span>
+                Nueva Función
+            </button>
+</div>
+<!-- Footer Nav -->
+<div class="border-t border-border-subtle pt-stack-sm space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Ajustes
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Cerrar Sesión
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-[280px] h-full overflow-y-auto bg-background">
+<!-- TopNavBar (Mobile Only & Simplified for Admin Desktop) -->
+<header class="bg-surface-white text-primary font-headline-sm text-headline-sm docked full-width top-0 border-b border-border-subtle flat no shadows flex justify-between items-center w-full px-margin-mobile lg:px-margin-desktop h-16 sticky z-10">
+<div class="flex items-center gap-4 lg:hidden">
+<button class="p-2 text-secondary hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">CineAdmin</h2>
+</div>
+<!-- Breadcrumbs / Page Title (Desktop) -->
+<div class="hidden lg:flex items-center gap-2 text-text-muted font-label-lg text-label-lg">
+<span>Películas</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-on-surface">Añadir Película</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-secondary hover:bg-surface-container-low rounded-full transition-colors opacity-80 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-border-subtle ml-2">
+<img alt="Administrator profile" class="w-full h-full object-cover" data-alt="A professional administrative headshot portrait of a cinema manager. Soft, even lighting, modern corporate aesthetic. Clean background, sharp focus on the face." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZj6IJ2mWYGDVW-fKKpRfnWFCNJ-mMgQ5e6YJRqOADW8Dg0lrT6GfHCiCY6FAaUFPAoxbaWXg-TOvXC3eKuPx4Ab9q1i5tOqvNa5XFpnnoC8f0SaYScEztby14PiEBbl1E_SYEMQOjDRK92C_YSDuCrol17PIEOxHkqQh6aST9iTv6Rw1hvUEhRY2xMqi189cLZnoDx3L3QAIJcdvPlB4GowiFMCdspkmWn9Q9-zThFyOAgW4O8s54MRpm15Ld4jeF-wtEcOWiqJg"/>
+</div>
+</div>
+</header>
+<!-- Form Container -->
+<div class="p-margin-mobile lg:p-margin-desktop max-w-container-max mx-auto">
+<div class="mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg font-bold text-text-main">Registrar Nueva Película</h2>
+<p class="font-body-md text-body-md text-text-muted mt-1">Complete los detalles para agregar un nuevo título al catálogo.</p>
+</div>
+<div class="bg-surface-white rounded-xl border border-border-subtle p-stack-lg shadow-sm">
+<form action="#" class="space-y-stack-lg" method="POST">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-stack-lg">
+<!-- Left Column: Poster Upload -->
+<div class="lg:col-span-1 space-y-4">
+<label class="block font-label-lg text-label-lg text-text-main mb-2">Póster Oficial</label>
+<div class="border-2 border-dashed border-border-subtle rounded-xl h-80 flex flex-col items-center justify-center bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer group relative overflow-hidden">
+<!-- File Upload Graphic -->
+<div class="text-center z-10 px-4">
+<span class="material-symbols-outlined text-4xl text-secondary mb-2 group-hover:scale-110 transition-transform">cloud_upload</span>
+<p class="font-label-sm text-label-sm text-text-main">Haz clic para subir póster</p>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">JPG, PNG (Ratio 2:3)</p>
+</div>
+<input accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" type="file"/>
+</div>
+<p class="text-error font-body-sm text-sm hidden">Campo obligatorio</p>
+</div>
+<!-- Right Column: Details -->
+<div class="lg:col-span-2 space-y-stack-md">
+<!-- Título -->
+<div>
+<label class="block font-label-lg text-label-lg text-text-main mb-1" for="titulo">Título Original</label>
+<input class="w-full rounded-lg border-border-subtle shadow-sm focus:border-primary-container focus:ring-primary-container font-body-md text-body-md bg-surface-white text-on-surface" id="titulo" name="titulo" placeholder="Ej: Dune: Part Two" required="" type="text"/>
+<p class="text-error font-body-sm text-sm mt-1 hidden">Campo obligatorio</p>
+</div>
+<!-- Sinopsis -->
+<div>
+<label class="block font-label-lg text-label-lg text-text-main mb-1" for="sinopsis">Sinopsis</label>
+<textarea class="w-full rounded-lg border-border-subtle shadow-sm focus:border-primary-container focus:ring-primary-container font-body-md text-body-md bg-surface-white text-on-surface resize-none" id="sinopsis" name="sinopsis" placeholder="Breve descripción de la trama..." rows="4"></textarea>
+<p class="text-error font-body-sm text-sm mt-1 hidden">Campo obligatorio</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<!-- Género -->
+<div>
+<label class="block font-label-lg text-label-lg text-text-main mb-1" for="genero">Género</label>
+<select class="w-full rounded-lg border-border-subtle shadow-sm focus:border-primary-container focus:ring-primary-container font-body-md text-body-md bg-surface-white text-on-surface" id="genero" name="genero">
+<option disabled="" selected="" value="">Seleccionar...</option>
+<option value="accion">Acción</option>
+<option value="ciencia_ficcion">Ciencia Ficción</option>
+<option value="drama">Drama</option>
+<option value="comedia">Comedia</option>
+<option value="terror">Terror</option>
+</select>
+<p class="text-error font-body-sm text-sm mt-1 hidden">Campo obligatorio</p>
+</div>
+<!-- Duración -->
+<div>
+<label class="block font-label-lg text-label-lg text-text-main mb-1" for="duracion">Duración (min)</label>
+<input class="w-full rounded-lg border-border-subtle shadow-sm focus:border-primary-container focus:ring-primary-container font-body-md text-body-md bg-surface-white text-on-surface" id="duracion" min="1" name="duracion" placeholder="120" required="" type="number"/>
+<p class="text-error font-body-sm text-sm mt-1 hidden">Campo obligatorio</p>
+</div>
+<!-- Clasificación -->
+<div>
+<label class="block font-label-lg text-label-lg text-text-main mb-1" for="clasificacion">Clasificación</label>
+<select class="w-full rounded-lg border-border-subtle shadow-sm focus:border-primary-container focus:ring-primary-container font-body-md text-body-md bg-surface-white text-on-surface" id="clasificacion" name="clasificacion">
+<option value="aa">AA (Todo Público)</option>
+<option value="a">A (Apta para todos)</option>
+<option value="b">B (Mayores de 12)</option>
+<option value="b15">B-15 (Mayores de 15)</option>
+<option value="c">C (Adultos)</option>
+</select>
+<p class="text-error font-body-sm text-sm mt-1 hidden">Campo obligatorio</p>
+</div>
+<!-- Año de Estreno -->
+<div>
+<label class="block font-label-lg text-label-lg text-text-main mb-1" for="ano_estreno">Año de Estreno</label>
+<input class="w-full rounded-lg border-border-subtle shadow-sm focus:border-primary-container focus:ring-primary-container font-body-md text-body-md bg-surface-white text-on-surface" id="ano_estreno" max="2100" min="1900" name="ano_estreno" placeholder="Ej: 2024" required="" type="number"/>
+<p class="text-error font-body-sm text-sm mt-1 hidden">Campo obligatorio</p>
+</div>
+</div>
+<!-- Distribuidora / Extras -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md pt-2">
+<div>
+<label class="block font-label-lg text-label-lg text-text-main mb-1" for="distribuidora">Distribuidora</label>
+<input class="w-full rounded-lg border-border-subtle shadow-sm focus:border-primary-container focus:ring-primary-container font-body-md text-body-md bg-surface-white text-on-surface" id="distribuidora" name="distribuidora" placeholder="Ej: Warner Bros." type="text"/>
+<p class="text-error font-body-sm text-sm mt-1 hidden">Campo obligatorio</p>
+</div>
+<div>
+<label class="block font-label-lg text-label-lg text-text-main mb-2">Formatos Disponibles</label>
+<div class="flex gap-4 items-center h-10">
+<label class="inline-flex items-center">
+<input checked="" class="rounded border-border-subtle text-primary-container focus:ring-primary-container h-5 w-5" type="checkbox"/>
+<span class="ml-2 font-body-sm text-body-sm text-on-surface">2D</span>
+</label>
+<label class="inline-flex items-center">
+<input class="rounded border-border-subtle text-primary-container focus:ring-primary-container h-5 w-5" type="checkbox"/>
+<span class="ml-2 font-body-sm text-body-sm text-on-surface">3D</span>
+</label>
+<label class="inline-flex items-center">
+<input class="rounded border-border-subtle text-primary-container focus:ring-primary-container h-5 w-5" type="checkbox"/>
+<span class="ml-2 font-body-sm text-body-sm text-on-surface">IMAX</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Divider -->
+<hr class="border-border-subtle my-stack-md"/>
+<!-- Actions -->
+<div class="flex justify-end gap-4">
+<button class="px-6 py-2.5 rounded-lg border border-border-subtle font-label-lg text-label-lg text-text-main hover:bg-surface-container-low transition-colors bg-transparent" type="button">
+                            Cancelar
+                        </button>
+<button class="px-6 py-2.5 rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg hover:opacity-90 transition-opacity flex items-center gap-2" type="submit">
+<span class="material-symbols-outlined text-sm">save</span>
+                            Crear película
+                        </button>
+</div>
+</form>
+</div>
+</div>
+</main>
+</body></html>

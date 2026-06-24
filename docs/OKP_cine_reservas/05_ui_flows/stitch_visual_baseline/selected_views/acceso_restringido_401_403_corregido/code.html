@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Acceso Restringido</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#eef3ff",
+                        "border-subtle": "#E5E7EB",
+                        "background": "#f8f9fa",
+                        "on-tertiary-fixed-variant": "#00497e",
+                        "secondary-fixed": "#d9e3f6",
+                        "on-primary-fixed-variant": "#763300",
+                        "on-background": "#191c1d",
+                        "text-muted": "#4B5563",
+                        "inverse-on-surface": "#f0f1f2",
+                        "status-reserved": "#92400E",
+                        "status-canceled": "#991B1B",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#ffb68e",
+                        "surface-tint": "#9b4500",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#596373",
+                        "status-confirmed": "#065F46",
+                        "secondary": "#555f6f",
+                        "outline": "#897267",
+                        "surface": "#f8f9fa",
+                        "tertiary-fixed": "#d2e4ff",
+                        "tertiary-fixed-dim": "#9fcaff",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#121c2a",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#ffdbca",
+                        "inverse-surface": "#2e3132",
+                        "status-available": "#1E40AF",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#005998",
+                        "surface-container-low": "#f3f4f5",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "text-main": "#111827",
+                        "surface-dim": "#d9dadb",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-container": "#d6e0f3",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "tertiary-container": "#0072c0",
+                        "primary-container": "#b45309",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#331200",
+                        "outline-variant": "#ddc1b3",
+                        "on-primary-container": "#fff1eb",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-surface-variant": "#564338",
+                        "surface-container": "#edeeef",
+                        "surface-variant": "#e1e3e4",
+                        "on-surface": "#191c1d",
+                        "on-secondary": "#ffffff",
+                        "primary": "#903f00",
+                        "surface-white": "#FFFFFF",
+                        "on-tertiary-fixed": "#001d36",
+                        "surface-container-high": "#e7e8e9",
+                        "primary-fixed-dim": "#ffb68e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "0.5rem",
+                        "stack-lg": "2rem",
+                        "margin-desktop": "2rem",
+                        "container-max": "1280px",
+                        "margin-mobile": "1rem",
+                        "gutter": "1.5rem",
+                        "stack-md": "1rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "label-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background min-h-screen flex items-center justify-center font-body-md text-on-background antialiased selection:bg-primary-container selection:text-on-primary-container p-margin-mobile md:p-margin-desktop">
+<!-- Top Navigation Bar (Contextual rendering: Only visible on top-level pages, but retained for structural consistency if needed. Suppressed here to focus on the transactional canvas as per instructions for linear/error pages) -->
+<main class="w-full max-w-md mx-auto">
+<!-- Error Card -->
+<div class="bg-surface-white border border-border-subtle rounded-xl p-stack-lg shadow-sm text-center relative overflow-hidden group">
+<!-- Decorative Accent -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-error to-status-canceled opacity-80"></div>
+<!-- Icon Container -->
+<div class="mx-auto w-16 h-16 bg-error-container rounded-full flex items-center justify-center mb-stack-md transition-transform duration-300 group-hover:scale-105">
+<span class="material-symbols-outlined text-[32px] text-error" style="font-variation-settings: 'FILL' 1;">
+                    lock
+                </span>
+</div>
+<!-- Content Area (401 state) -->
+<div class="space-y-stack-sm" id="error-content-401">
+<h1 class="font-headline-md text-headline-md text-text-main">
+                    Acceso Restringido
+                </h1>
+<p class="font-body-md text-body-md text-text-muted mb-stack-lg">
+                    Necesitas iniciar sesión para continuar.
+                </p>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-stack-sm pt-stack-sm">
+<button class="w-full bg-primary-container hover:bg-primary text-on-primary font-label-lg text-label-lg py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">login</span>
+                        Iniciar sesión
+                    </button>
+<button class="w-full bg-transparent hover:bg-surface-container border border-border-subtle text-text-main font-label-lg text-label-lg py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2">
+                        Volver a inicio
+                    </button>
+</div>
+</div>
+<!-- Hidden Content Area (403 state) -->
+<div class="hidden space-y-stack-sm" id="error-content-403">
+<h1 class="font-headline-md text-headline-md text-text-main">
+                    Acceso Restringido
+                </h1>
+<p class="font-body-md text-body-md text-text-muted mb-stack-lg">
+                    No tienes permisos para acceder a esta sección.
+                </p>
+<div class="flex flex-col gap-stack-sm pt-stack-sm">
+<button class="w-full bg-primary-container hover:bg-primary text-on-primary font-label-lg text-label-lg py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">movie</span>
+                        Volver a la cartelera
+                    </button>
+<button class="w-full bg-transparent hover:bg-surface-container border border-border-subtle text-text-main font-label-lg text-label-lg py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2">
+                        Volver a inicio
+                    </button>
+</div>
+</div>
+</div>
+<!-- Footer / Support Context -->
+<div class="mt-stack-md text-center">
+<p class="font-label-sm text-label-sm text-text-muted flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[14px]">support_agent</span>
+                ¿Problemas técnicos? Contacta a soporte TI.
+            </p>
+</div>
+</main>
+</body></html>

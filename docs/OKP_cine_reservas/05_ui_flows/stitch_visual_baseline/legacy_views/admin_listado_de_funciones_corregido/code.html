@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CineAdmin - Funciones</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#edeeef",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#ffb68e",
+                    "text-muted": "#4B5563",
+                    "surface": "#f8f9fa",
+                    "on-secondary-container": "#596373",
+                    "primary-container": "#b45309",
+                    "on-tertiary-container": "#eef3ff",
+                    "secondary": "#555f6f",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#0072c0",
+                    "primary-fixed": "#ffdbca",
+                    "outline": "#897267",
+                    "on-surface": "#191c1d",
+                    "surface-container-highest": "#e1e3e4",
+                    "secondary-fixed": "#d9e3f6",
+                    "surface-white": "#FFFFFF",
+                    "surface-tint": "#9b4500",
+                    "primary-fixed-dim": "#ffb68e",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "background": "#f8f9fa",
+                    "on-surface-variant": "#564338",
+                    "on-tertiary-fixed-variant": "#00497e",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "text-main": "#111827",
+                    "surface-variant": "#e1e3e4",
+                    "surface-dim": "#d9dadb",
+                    "status-available": "#1E40AF",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#fff1eb",
+                    "status-confirmed": "#065F46",
+                    "on-secondary-fixed": "#121c2a",
+                    "on-primary-fixed": "#331200",
+                    "on-background": "#191c1d",
+                    "outline-variant": "#ddc1b3",
+                    "tertiary-fixed": "#d2e4ff",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#d6e0f3",
+                    "on-tertiary-fixed": "#001d36",
+                    "tertiary": "#005998",
+                    "on-primary-fixed-variant": "#763300",
+                    "tertiary-fixed-dim": "#9fcaff",
+                    "status-canceled": "#991B1B",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f0f1f2",
+                    "surface-container-high": "#e7e8e9",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f8f9fa",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f3f4f5",
+                    "status-reserved": "#92400E",
+                    "border-subtle": "#E5E7EB",
+                    "primary": "#903f00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "1.5rem",
+                    "margin-mobile": "1rem",
+                    "container-max": "1280px",
+                    "stack-sm": "0.5rem",
+                    "stack-md": "1rem",
+                    "stack-lg": "2rem",
+                    "margin-desktop": "2rem"
+            },
+            "fontFamily": {
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "label-lg": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "headline-sm": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "body-sm": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-background font-body-md text-on-background h-full antialiased flex">
+<!-- SideNavBar -->
+<nav class="hidden lg:flex flex-col h-screen p-stack-md bg-surface-container-lowest dark:bg-inverse-surface border-r border-border-subtle dark:border-outline docked fixed left-0 top-0 w-[280px] z-50">
+<div class="flex items-center gap-4 mb-stack-lg px-2">
+<div class="w-10 h-10 rounded bg-primary-container flex items-center justify-center text-on-primary font-bold">CA</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary">CineAdmin</h1>
+<p class="font-label-sm text-label-sm text-secondary">Theater Management</p>
+</div>
+</div>
+<button class="mb-stack-lg w-full bg-[#B45309] text-on-primary font-label-lg text-label-lg py-2 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-tint transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+            Nueva Función
+        </button>
+<div class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">movie</span>
+                Películas
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">theater_comedy</span>
+                Salas
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary font-semibold transition-all font-label-lg text-label-lg scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">schedule</span>
+                Funciones
+            </a>
+</div>
+<div class="mt-auto border-t border-border-subtle pt-4 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Ajustes
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Cerrar Sesión
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 lg:ml-[280px] min-h-screen flex flex-col">
+<!-- TopNavBar (Mobile mainly, or auxiliary desktop) -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-16 bg-surface-white dark:bg-inverse-surface border-b border-border-subtle dark:border-outline lg:hidden sticky top-0 z-40">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">CineAdmin</div>
+<div class="flex items-center gap-4 text-primary dark:text-inverse-primary">
+<button class="hover:bg-surface-container-low transition-colors p-2 rounded-full"><span class="material-symbols-outlined">notifications</span></button>
+<button class="hover:bg-surface-container-low transition-colors p-2 rounded-full"><span class="material-symbols-outlined">settings</span></button>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-gutter lg:p-margin-desktop flex-1 max-w-container-max mx-auto w-full">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-stack-lg gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-text-main">Funciones Programadas</h2>
+<p class="font-body-md text-body-md text-text-muted mt-1">Gestión y programación de horarios en cartelera.</p>
+</div>
+<button class="bg-[#B45309] text-on-primary font-label-lg text-label-lg py-2 px-6 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-tint transition-colors shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+                    Nueva Función
+                </button>
+</div>
+<!-- Filters Bar -->
+<div class="bg-surface-white border border-border-subtle rounded-xl p-4 mb-stack-md flex flex-wrap gap-4 items-end shadow-sm">
+<div class="flex-1 min-w-[200px]">
+<label class="block font-label-lg text-label-lg text-[#1F2937] mb-1">Película</label>
+<div class="relative">
+<select class="w-full border border-border-subtle rounded-lg py-2 px-3 font-body-md text-body-md bg-surface focus:outline-none focus:border-[#B45309] focus:ring-1 focus:ring-[#B45309] appearance-none">
+<option>Todas las películas</option>
+<option>Dune: Parte Dos</option>
+<option>Oppenheimer</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-text-muted pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex-1 min-w-[150px]">
+<label class="block font-label-lg text-label-lg text-[#1F2937] mb-1">Sala</label>
+<div class="relative">
+<select class="w-full border border-border-subtle rounded-lg py-2 px-3 font-body-md text-body-md bg-surface focus:outline-none focus:border-[#B45309] focus:ring-1 focus:ring-[#B45309] appearance-none">
+<option>Todas las salas</option>
+<option>Sala 1 (IMAX)</option>
+<option>Sala 2</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-text-muted pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex-1 min-w-[150px]">
+<label class="block font-label-lg text-label-lg text-[#1F2937] mb-1">Fecha</label>
+<input class="w-full border border-border-subtle rounded-lg py-2 px-3 font-body-md text-body-md bg-surface focus:outline-none focus:border-[#B45309] focus:ring-1 focus:ring-[#B45309]" placeholder="dd/mm/yyyy" type="text" value="15/11/2023"/>
+</div>
+<button class="border border-border-subtle bg-transparent text-[#1F2937] font-label-lg text-label-lg py-2 px-4 rounded-lg hover:bg-surface-container transition-colors h-[42px] flex items-center gap-2">
+<span class="material-symbols-outlined">filter_list</span>
+                    Filtrar
+                </button>
+</div>
+<!-- Data Table -->
+<div class="bg-surface-white border border-border-subtle rounded-xl overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-[#F3F4F6] border-b border-border-subtle">
+<tr>
+<th class="py-3 px-4 font-label-sm text-label-sm text-[#111827] uppercase tracking-wider">Película</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-[#111827] uppercase tracking-wider">Sala</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-[#111827] uppercase tracking-wider">Inicio</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-[#111827] uppercase tracking-wider">Fin</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-[#111827] uppercase tracking-wider" title="Incluye 15 min de limpieza">Disp. Desde</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-[#111827] uppercase tracking-wider">Precio</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-[#111827] uppercase tracking-wider text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="py-3 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-14 bg-surface-container rounded overflow-hidden flex-shrink-0 border border-border-subtle">
+<img class="w-full h-full object-cover" data-alt="A minimalist and corporate movie poster representation for a sci-fi film, featuring deep desert oranges and dark contrasts, professional clean layout suitable for an admin dashboard thumbnail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF3YfQAVX9z8CLnUM0LlBfFQpaQhMDZ7f-YUMkKvWdn6t4yLFnyG2NnW-VSgOn83FhIyCB9qKmGcz6NufnKW04qzYg6NtSMBm1nPQqS3IxOo1VvHq0DB7z1YXvLDH3n5jh6g7tLpxt5z8k-VF8xSRxWyTJKJPdNvCeqigFSp2iPr6cjxH26B-asH2lIaxkEqURIK2j_7Q4gqbuKnp165U0j3x0Vn31rLbthpsvwMryrUBb3A-lKgyZE4Ts9BZk7dC3K49WR6ItCyk"/>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-text-main">Dune: Parte Dos</p>
+<p class="font-body-sm text-body-sm text-text-muted">166 min • Sci-Fi</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-text-main">
+                                        Sala 1 (IMAX)
+                                    </span>
+</td>
+<td class="py-3 px-4 font-body-md text-body-md text-text-main">14:00</td>
+<td class="py-3 px-4 font-body-md text-body-md text-text-muted">16:46</td>
+<td class="py-3 px-4">
+<span class="font-label-lg text-label-lg text-status-confirmed bg-status-confirmed/10 px-2 py-1 rounded">17:01</span>
+</td>
+<td class="py-3 px-4 font-body-md text-body-md text-text-main">Bs. 12.50</td>
+<td class="py-3 px-4 text-right">
+<div class="flex justify-end gap-2 transition-opacity">
+<button class="text-secondary hover:text-primary transition-colors p-1" title="Editar">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="text-secondary hover:text-error transition-colors p-1" title="Eliminar">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="py-3 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-14 bg-surface-container rounded overflow-hidden flex-shrink-0 border border-border-subtle">
+<img class="w-full h-full object-cover" data-alt="A minimalist and corporate movie poster representation for a historical drama, featuring stark black and white contrasts with fiery accents, professional clean layout suitable for an admin dashboard thumbnail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHaVhByOsVXYu6smaWJyhZo7HrgbD0XnzcINzCtZpX2u5qIABesHilAhfq0KcsPEEeB3CMzSc2Z2aveu7U0ws3xi6l-qE_dAkMXqUXfKku7vVN38Z7U-LvDFfbLupmQtju6uLvAJrRUJaSuCDgEoZHG2WlwJn2FXrIij7jqJu6QDD_ev53dFkZV0M6FPkDZgvcHpyORWxp-hJDg5owjnr8enN42di4wnYgnGWUx9BiAhKW9N-YjWwFhDO7azbv_cGtdov5zP64o_w"/>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-text-main">Oppenheimer</p>
+<p class="font-body-sm text-body-sm text-text-muted">180 min • Drama</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-text-main">
+                                        Sala 2
+                                    </span>
+</td>
+<td class="py-3 px-4 font-body-md text-body-md text-text-main">18:00</td>
+<td class="py-3 px-4 font-body-md text-body-md text-text-muted">21:00</td>
+<td class="py-3 px-4">
+<span class="font-label-lg text-label-lg text-status-confirmed bg-status-confirmed/10 px-2 py-1 rounded">21:15</span>
+</td>
+<td class="py-3 px-4 font-body-md text-body-md text-text-main">Bs. 10.00</td>
+<td class="py-3 px-4 text-right">
+<div class="flex justify-end gap-2 transition-opacity">
+<button class="text-secondary hover:text-primary transition-colors p-1" title="Editar">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="text-secondary hover:text-error transition-colors p-1" title="Eliminar">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Empty State -->
+<tr class="hidden" id="empty-state">
+<td class="py-8 text-center text-text-muted font-body-md" colspan="7">
+                                No hay funciones programadas para esta fecha.
+                            </td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-surface-white px-4 py-3 border-t border-border-subtle flex items-center justify-between sm:px-6">
+<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+<div>
+<p class="font-body-sm text-body-sm text-text-muted">
+                                Mostrando <span class="font-bold text-text-main">1</span> a <span class="font-bold text-text-main">2</span> de <span class="font-bold text-text-main">24</span> resultados
+                            </p>
+</div>
+<div>
+<nav aria-label="Pagination" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+<a class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-border-subtle bg-surface-white text-sm font-medium text-text-muted hover:bg-surface-container" href="#">
+<span class="sr-only">Anterior</span>
+<span class="material-symbols-outlined">chevron_left</span>
+</a>
+<a aria-current="page" class="z-10 bg-primary-container/10 border-[#B45309] text-[#B45309] relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                    1
+                                </a>
+<a class="bg-surface-white border-border-subtle text-text-muted hover:bg-surface-container relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                    2
+                                </a>
+<a class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-border-subtle bg-surface-white text-sm font-medium text-text-muted hover:bg-surface-container" href="#">
+<span class="sr-only">Siguiente</span>
+<span class="material-symbols-outlined">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

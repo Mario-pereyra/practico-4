@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Crear/Editar Función - CineAdmin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#eef3ff",
+                    "border-subtle": "#E5E7EB",
+                    "background": "#f8f9fa",
+                    "on-tertiary-fixed-variant": "#00497e",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-primary-fixed-variant": "#763300",
+                    "on-background": "#191c1d",
+                    "text-muted": "#4B5563",
+                    "inverse-on-surface": "#f0f1f2",
+                    "status-reserved": "#92400E",
+                    "status-canceled": "#991B1B",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#ffb68e",
+                    "surface-tint": "#9b4500",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#596373",
+                    "status-confirmed": "#065F46",
+                    "secondary": "#555f6f",
+                    "outline": "#897267",
+                    "surface": "#f8f9fa",
+                    "tertiary-fixed": "#d2e4ff",
+                    "tertiary-fixed-dim": "#9fcaff",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#121c2a",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#ffdbca",
+                    "inverse-surface": "#2e3132",
+                    "status-available": "#1E40AF",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#005998",
+                    "surface-container-low": "#f3f4f5",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "text-main": "#111827",
+                    "surface-dim": "#d9dadb",
+                    "surface-bright": "#f8f9fa",
+                    "secondary-container": "#d6e0f3",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "tertiary-container": "#0072c0",
+                    "primary-container": "#b45309",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#331200",
+                    "outline-variant": "#ddc1b3",
+                    "on-primary-container": "#fff1eb",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-surface-variant": "#564338",
+                    "surface-container": "#edeeef",
+                    "surface-variant": "#e1e3e4",
+                    "on-surface": "#191c1d",
+                    "on-secondary": "#ffffff",
+                    "primary": "#903f00",
+                    "surface-white": "#FFFFFF",
+                    "on-tertiary-fixed": "#001d36",
+                    "surface-container-high": "#e7e8e9",
+                    "primary-fixed-dim": "#ffb68e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-sm": "0.5rem",
+                    "stack-lg": "2rem",
+                    "margin-desktop": "2rem",
+                    "container-max": "1280px",
+                    "margin-mobile": "1rem",
+                    "gutter": "1.5rem",
+                    "stack-md": "1rem"
+            },
+            "fontFamily": {
+                    "headline-lg": [
+                            "Hanken Grotesk"
+                    ],
+                    "body-sm": [
+                            "Hanken Grotesk"
+                    ],
+                    "label-lg": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-md": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-lg-mobile": [
+                            "Hanken Grotesk"
+                    ],
+                    "body-lg": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-sm": [
+                            "Hanken Grotesk"
+                    ],
+                    "label-sm": [
+                            "Hanken Grotesk"
+                    ],
+                    "body-md": [
+                            "Hanken Grotesk"
+                    ]
+            },
+            "fontSize": {
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-lg": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "28px",
+                            {
+                                    "lineHeight": "36px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-sm": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col md:flex-row">
+<!-- Mobile Top Nav -->
+<nav class="md:hidden bg-surface-white text-primary flex justify-between items-center w-full px-margin-mobile h-16 shadow-sm border-b border-border-subtle z-50">
+<div class="font-headline-md text-headline-md font-bold text-primary">CineAdmin</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined cursor-pointer" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined cursor-pointer" data-icon="settings">settings</span>
+</div>
+</nav>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden lg:flex flex-col h-screen p-stack-md bg-surface-container-lowest text-primary docked fixed left-0 top-0 w-[280px] border-r border-border-subtle z-40">
+<div class="flex items-center gap-3 mb-8 px-4">
+<div class="w-10 h-10 bg-primary-container rounded-full flex items-center justify-center text-on-primary-container font-bold">CA</div>
+<div>
+<div class="font-headline-sm text-headline-sm font-bold text-primary">CineAdmin</div>
+<div class="text-xs text-secondary">Theater Management</div>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container py-3 rounded-xl font-label-lg text-label-lg font-semibold mb-8 hover:opacity-90 transition-opacity flex justify-center items-center gap-2">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+            Nueva Función
+        </button>
+<ul class="flex flex-col gap-2 flex-grow">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary hover:bg-surface-container transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary hover:bg-surface-container transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="movie">movie</span>
+                    Películas
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary hover:bg-surface-container transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="theater_comedy">theater_comedy</span>
+                    Salas
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-secondary-container text-on-secondary-container font-semibold font-label-lg text-label-lg scale-95 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+                    Funciones
+                </a>
+</li>
+</ul>
+<div class="mt-auto border-t border-border-subtle pt-4">
+<ul class="flex flex-col gap-2">
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-secondary hover:bg-surface-container transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                        Ajustes
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-secondary hover:bg-surface-container transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                        Cerrar Sesión
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full lg:ml-[280px] p-margin-mobile lg:p-margin-desktop bg-background min-h-screen">
+<div class="max-w-4xl mx-auto">
+<!-- Header -->
+<div class="mb-8 flex justify-between items-center">
+<div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-text-main mb-2">Crear Nueva Función</h1>
+<p class="text-text-muted font-body-md">Configura los detalles logísticos para la proyección.</p>
+</div>
+<div class="hidden md:flex gap-3">
+<button class="px-6 py-2 rounded border border-border-subtle text-text-main font-label-lg text-label-lg hover:bg-surface-container-low transition-colors">Cancelar</button>
+<button class="px-6 py-2 rounded bg-primary-container text-on-primary-container font-label-lg text-label-lg font-bold hover:opacity-90 transition-opacity">Guardar Función</button>
+</div>
+</div>
+<!-- Form Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Main Form Section -->
+<div class="lg:col-span-2 space-y-6">
+<div class="bg-surface-white p-6 rounded border border-border-subtle shadow-sm hover:shadow-md transition-shadow duration-300">
+<h2 class="font-headline-sm text-headline-sm text-text-main mb-6 border-b border-border-subtle pb-2">Detalles Principales</h2>
+<div class="space-y-5">
+<div>
+<label class="block font-label-lg text-label-lg text-text-main mb-2">Seleccionar Película</label>
+<div class="relative">
+<select class="w-full border-border-subtle rounded text-text-main bg-surface-white focus:border-primary-container focus:ring-1 focus:ring-primary-container h-12 pl-4 pr-10 appearance-none cursor-pointer">
+<option disabled="" selected="" value="">Elige una película del catálogo...</option>
+<option value="1">Dune: Part Two (166 min)</option>
+<option value="2">Oppenheimer (180 min)</option>
+<option value="3">The Boy and the Heron (124 min)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-text-muted pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div>
+<label class="block font-label-lg text-label-lg text-text-main mb-2">Sala Asignada</label>
+<div class="relative">
+<select class="w-full border-border-subtle rounded text-text-main bg-surface-white focus:border-primary-container focus:ring-1 focus:ring-primary-container h-12 pl-4 pr-10 appearance-none cursor-pointer">
+<option disabled="" selected="" value="">Selecciona sala...</option>
+<option value="1">Sala 1 (IMAX - 300 asientos)</option>
+<option value="2">Sala 2 (Standard - 150 asientos)</option>
+<option value="3">Sala VIP (Premium - 50 asientos)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-text-muted pointer-events-none" data-icon="meeting_room">meeting_room</span>
+</div>
+</div>
+<div>
+<label class="block font-label-lg text-label-lg text-text-main mb-2">Precio Base ($)</label>
+<div class="relative">
+<input class="w-full border-border-subtle rounded text-text-main bg-surface-white focus:border-primary-container focus:ring-1 focus:ring-primary-container h-12 pl-10" placeholder="0.00" type="number"/>
+<span class="material-symbols-outlined absolute left-3 top-3 text-text-muted pointer-events-none" data-icon="payments">payments</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-white p-6 rounded border border-border-subtle shadow-sm hover:shadow-md transition-shadow duration-300">
+<h2 class="font-headline-sm text-headline-sm text-text-main mb-6 border-b border-border-subtle pb-2">Programación</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div>
+<label class="block font-label-lg text-label-lg text-text-main mb-2">Fecha</label>
+<div class="relative">
+<input class="w-full border-border-subtle rounded text-text-main bg-surface-white focus:border-primary-container focus:ring-1 focus:ring-primary-container h-12 px-4 cursor-pointer" type="date"/>
+</div>
+</div>
+<div>
+<label class="block font-label-lg text-label-lg text-text-main mb-2">Hora de Inicio</label>
+<div class="relative">
+<input class="w-full border-border-subtle rounded text-text-main bg-surface-white focus:border-primary-container focus:ring-1 focus:ring-primary-container h-12 px-4 cursor-pointer" type="time" value="18:00"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Logistics Calculation Sidebar -->
+<div class="lg:col-span-1 space-y-6">
+<div class="bg-surface-container-lowest border border-border-subtle rounded p-6 sticky top-6">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary-container" data-icon="analytics">analytics</span>
+<h3 class="font-headline-sm text-headline-sm text-text-main">Logística Visual</h3>
+</div>
+<div class="space-y-4 font-body-sm text-text-main">
+<div class="flex justify-between items-center py-2 border-b border-border-subtle">
+<span class="text-text-muted">Inicio:</span>
+<span class="font-bold">18:00</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-border-subtle">
+<span class="text-text-muted">Duración Película:</span>
+<span>166 min</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-border-subtle">
+<span class="text-text-muted">Trailers (Est.):</span>
+<span>15 min</span>
+</div>
+<div class="bg-surface-container p-3 rounded mt-4">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-text-main">FIN ESTIMADO</span>
+<span class="font-headline-md text-headline-md text-primary-container font-bold">21:01</span>
+</div>
+<p class="text-xs text-text-muted">Calculado automáticamente</p>
+</div>
+<div class="mt-6 border border-status-available/30 bg-tertiary-fixed/30 p-4 rounded flex items-start gap-3">
+<span class="material-symbols-outlined text-status-available mt-0.5" data-icon="cleaning_services">cleaning_services</span>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-tertiary-fixed-variant">Limpieza de Sala</h4>
+<p class="text-xs text-text-muted mt-1">15 min requeridos antes de la siguiente función. Sala disponible a las <strong>21:16</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Mobile Action Buttons -->
+<div class="mt-8 flex md:hidden gap-3 flex-col">
+<button class="w-full py-3 rounded bg-primary-container text-on-primary-container font-label-lg text-label-lg font-bold hover:opacity-90 transition-opacity">Guardar Función</button>
+<button class="w-full py-3 rounded border border-border-subtle text-text-main font-label-lg text-label-lg hover:bg-surface-container-low transition-colors">Cancelar</button>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CineReservas - Mis Reservas</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#d9e3f6",
+                    "primary-container": "#b45309",
+                    "text-main": "#111827",
+                    "primary-fixed-dim": "#ffb68e",
+                    "on-surface-variant": "#564338",
+                    "error": "#ba1a1a",
+                    "surface-container": "#edeeef",
+                    "secondary-container": "#d6e0f3",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "on-secondary-container": "#596373",
+                    "secondary": "#555f6f",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f8f9fa",
+                    "on-primary-fixed-variant": "#763300",
+                    "tertiary-fixed": "#d2e4ff",
+                    "surface-container-high": "#e7e8e9",
+                    "on-surface": "#191c1d",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "status-available": "#1E40AF",
+                    "text-muted": "#4B5563",
+                    "surface-white": "#FFFFFF",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "primary": "#903f00",
+                    "outline-variant": "#ddc1b3",
+                    "status-reserved": "#92400E",
+                    "status-confirmed": "#065F46",
+                    "inverse-on-surface": "#f0f1f2",
+                    "tertiary-fixed-dim": "#9fcaff",
+                    "surface-variant": "#e1e3e4",
+                    "on-background": "#191c1d",
+                    "on-primary-fixed": "#331200",
+                    "inverse-primary": "#ffb68e",
+                    "tertiary": "#005998",
+                    "tertiary-container": "#0072c0",
+                    "status-canceled": "#991B1B",
+                    "primary-fixed": "#ffdbca",
+                    "background": "#f8f9fa",
+                    "surface-dim": "#d9dadb",
+                    "surface-container-low": "#f3f4f5",
+                    "on-tertiary-container": "#eef3ff",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#121c2a",
+                    "outline": "#897267",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#9b4500",
+                    "surface-bright": "#f8f9fa",
+                    "on-tertiary-fixed": "#001d36",
+                    "on-primary-container": "#fff1eb",
+                    "on-tertiary-fixed-variant": "#00497e",
+                    "border-subtle": "#E5E7EB",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-sm": "0.5rem",
+                    "stack-md": "1rem",
+                    "margin-mobile": "1rem",
+                    "margin-desktop": "2rem",
+                    "container-max": "1280px",
+                    "gutter": "1.5rem",
+                    "stack-lg": "2rem"
+            },
+            "fontFamily": {
+                    "label-sm": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-lg-mobile": [
+                            "Hanken Grotesk"
+                    ],
+                    "body-md": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-sm": [
+                            "Hanken Grotesk"
+                    ],
+                    "body-lg": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-md": [
+                            "Hanken Grotesk"
+                    ],
+                    "label-lg": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-lg": [
+                            "Hanken Grotesk"
+                    ],
+                    "body-sm": [
+                            "Hanken Grotesk"
+                    ]
+            },
+            "fontSize": {
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "28px",
+                            {
+                                    "lineHeight": "36px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-sm": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-lg": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; background-color: #F9FAFB; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface-white dark:bg-inverse-surface text-primary dark:text-inverse-primary font-label-lg text-label-lg border-b border-border-subtle dark:border-outline-variant flat no shadows w-full sticky top-0 z-50 transition-all duration-200 ease-in-out">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-16">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">CineReservas</div>
+<div class="hidden md:flex gap-gutter">
+<a class="text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed pb-1 hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors duration-200" href="#">Cartelera</a>
+<a class="text-primary dark:text-primary-fixed border-b-2 border-primary font-bold pb-1 hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors duration-200" href="#">Mis Reservas</a>
+</div>
+<div class="flex items-center gap-stack-sm">
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="flex-grow w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-stack-lg">
+<!-- Header & Filters -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-stack-lg gap-stack-md">
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-text-main mb-stack-sm">Mis Reservas</h1>
+<p class="font-body-md text-body-md text-text-muted">Gestiona tus entradas y reservas de cine.</p>
+</div>
+<div class="flex bg-surface-container-low p-1 rounded-lg border border-border-subtle">
+<button class="px-4 py-2 font-label-sm text-label-sm rounded bg-surface-white text-primary border border-border-subtle shadow-sm">Todas</button>
+<button class="px-4 py-2 font-label-sm text-label-sm rounded text-text-muted hover:text-text-main">Confirmadas</button>
+<button class="px-4 py-2 font-label-sm text-label-sm rounded text-text-muted hover:text-text-main">Canceladas</button>
+</div>
+</div>
+<!-- Reservations Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1: Confirmada -->
+<div class="bg-surface-white rounded-lg border border-border-subtle overflow-hidden hover:shadow-md transition-shadow duration-300">
+<div class="relative h-48 w-full">
+<img class="object-cover w-full h-full" data-alt="A cinematic still of a massive desert landscape with giant sandworms from an epic sci-fi movie. The lighting is harsh and bright, creating deep shadows on the dunes. The color palette is dominated by warm oranges, deep ochres, and muted grays. A tiny human figure stands in the foreground for scale, highlighting the immense cinematic scope of the scene." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG4hnXO8UW0qFrCAbBheQg8MR5Sfz3OtXd-tD3CPWnQXbgsSgR0rUYM6qXDMneBzUAljf4qJt6EUS0FWLgyWCQ-vQ9w2LILMQqwkFRzJOAgSHoQg7Qf6t32RJ9LMXT0nsixZLq3ezcZeNSKuJhGqJ3yQ6_OADQVs0qzIrq4b5Odbq0DKH2o9jQ9TukrZB4VMgTMkizh-venYsGSQ4Z44Pu2iAJvSU1FjFps8OoG7szcFxWFezJwiMFVfRX5AeFTYejZUHANjbKtq4"/>
+<div class="absolute top-4 right-4 bg-[#D1FAE5] text-status-confirmed px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                        Confirmada
+                    </div>
+</div>
+<div class="p-stack-md">
+<h3 class="font-headline-sm text-headline-sm text-text-main mb-stack-sm truncate">Duna: Parte Dos</h3>
+<div class="flex flex-col gap-2 mb-stack-md">
+<div class="flex items-center gap-2 text-text-muted font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>Sáb 15 Oct, 20:30</span>
+</div>
+<div class="flex items-center gap-2 text-text-muted font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">meeting_room</span>
+<span>Sala 4 - IMAX</span>
+</div>
+<div class="flex items-center gap-2 text-text-muted font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">chair</span>
+<span>Asientos: H12, H13</span>
+</div>
+</div>
+<div class="flex justify-between items-center border-t border-border-subtle pt-stack-md mt-stack-md">
+<div class="font-label-lg text-label-lg text-text-main">
+                            Total: Bs. 24.00
+                        </div>
+<button class="font-label-sm text-label-sm text-primary hover:text-primary-container transition-colors flex items-center gap-1">
+                            Ver detalle <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Cancelada -->
+<div class="bg-surface-white rounded-lg border border-border-subtle overflow-hidden hover:shadow-md transition-shadow duration-300 opacity-75">
+<div class="relative h-48 w-full grayscale-[50%]">
+<img class="object-cover w-full h-full" data-alt="A highly detailed cinematic shot of a dark, rain-slicked city street at night. Neon signs reflect in the puddles on the ground. A solitary figure in a trench coat walks away from the camera. The scene uses a moody palette of deep blues, stark blacks, and vibrant neon pinks and teals, creating a neo-noir atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFEq3Rx5FYIIgUea8-hP3Mj_S5EqBquIqf4NkCrWnheYLBnmOANBfheXJ0jp_ijXUDAmV5Kg5V-dPN1HdK7HNOX8RQk0W5n98SUGWcgwAurSFTXuZC3sedUG1CjT5JOf_DSHfYY8m1WzvhfosqrBNYzwVmOt7BV0e0mKEkJFF159V_khcP51YzC7YzyMaXhqH6bh3xn0xdn9vTmjnhKBjmS1bQnqDXAodkb16cxYD3pU_BKw9LwtWEEunbRjd74Edj9NqX9jqRBAI"/>
+<div class="absolute top-4 right-4 bg-[#FEE2E2] text-status-canceled px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">cancel</span>
+                        Cancelada
+                    </div>
+</div>
+<div class="p-stack-md">
+<h3 class="font-headline-sm text-headline-sm text-text-main mb-stack-sm truncate line-through decoration-text-muted">Blade Runner 2049</h3>
+<div class="flex flex-col gap-2 mb-stack-md">
+<div class="flex items-center gap-2 text-text-muted font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>Jue 13 Oct, 18:00</span>
+</div>
+<div class="flex items-center gap-2 text-text-muted font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">meeting_room</span>
+<span>Sala 2 - VIP</span>
+</div>
+<div class="flex items-center gap-2 text-text-muted font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">chair</span>
+<span>Asientos: A1, A2</span>
+</div>
+</div>
+<div class="flex justify-between items-center border-t border-border-subtle pt-stack-md mt-stack-md">
+<div class="font-label-lg text-label-lg text-text-muted">
+                            Total: Bs. 30.00
+                        </div>
+<button class="font-label-sm text-label-sm text-text-muted hover:text-text-main transition-colors flex items-center gap-1">
+                            Ver detalle <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 3: Confirmada -->
+<div class="bg-surface-white rounded-lg border border-border-subtle overflow-hidden hover:shadow-md transition-shadow duration-300">
+<div class="relative h-48 w-full">
+<img class="object-cover w-full h-full" data-alt="A whimsical animated scene featuring a lush, colorful jungle filled with strange, glowing plants and cute, expressive fantasy creatures. The lighting is soft and magical, with sunbeams piercing through the dense canopy. The color palette is vibrant, using rich greens, bright purples, and luminous yellows. The overall style is highly polished 3D animation, evoking a sense of wonder and adventure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5gagskXe9WBP5GdKdDnfXpimJMDUyUWhc9VLzOQJ7ZQ72ZNu4rz0CRq8vOGifzOZzWOhuKMwQNM5ADtOTlTDIIQbRQY12z17xVy7JQNa91jhPLfcFhwNDSH0BbXnRbfObHleFhHmG6kWZxHm_MYp-3YLoPg6789oGDLEcZI1DUzEz7RRPkIeuiGMqNY7Lx4maajUCO3y5xUXWH_KdRrqMIWoD9d9Yf7pcyCxIQGQUX1yBj2Hr6xBZISm1ty8Cb431QArkOH09MvI"/>
+<div class="absolute top-4 right-4 bg-[#D1FAE5] text-status-confirmed px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                        Confirmada
+                    </div>
+</div>
+<div class="p-stack-md">
+<h3 class="font-headline-sm text-headline-sm text-text-main mb-stack-sm truncate">El Viaje Mágico</h3>
+<div class="flex flex-col gap-2 mb-stack-md">
+<div class="flex items-center gap-2 text-text-muted font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>Dom 22 Oct, 16:15</span>
+</div>
+<div class="flex items-center gap-2 text-text-muted font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">meeting_room</span>
+<span>Sala 1 - 3D</span>
+</div>
+<div class="flex items-center gap-2 text-text-muted font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">chair</span>
+<span>Asientos: D4, D5, D6</span>
+</div>
+</div>
+<div class="flex justify-between items-center border-t border-border-subtle pt-stack-md mt-stack-md">
+<div class="font-label-lg text-label-lg text-text-main">
+                            Total: Bs. 27.50
+                        </div>
+<button class="font-label-sm text-label-sm text-primary hover:text-primary-container transition-colors flex items-center gap-1">
+                            Ver detalle <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State (Hidden by default, shown for demonstration purposes if needed, but currently keeping grid visible based on prompt instructions to show list. If user wanted JUST empty state, I'd uncomment this and hide grid. I will provide it hidden.) -->
+<div class="flex flex-col items-center justify-center py-20 text-center mt-8 border-t border-border-subtle">
+<div class="w-24 h-24 bg-surface-container rounded-full flex items-center justify-center mb-stack-md">
+<span class="material-symbols-outlined text-4xl text-text-muted">local_activity</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-text-main mb-2">Aún no tienes reservas.</h2>
+<p class="font-body-md text-body-md text-text-muted mb-stack-lg max-w-md">¡Revisa nuestra cartelera!</p>
+<button class="bg-primary-container text-on-primary font-label-lg text-label-lg px-6 py-3 rounded hover:bg-primary transition-colors">
+                Ver Cartelera
+            </button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-dim text-secondary dark:text-secondary-fixed font-body-sm text-body-sm border-t border-border-subtle dark:border-outline-variant w-full mt-auto">
+<div class="w-full py-stack-lg px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-stack-md">
+<div class="font-label-lg text-label-lg font-bold text-primary">CineReservas</div>
+<div class="flex gap-stack-md">
+<a class="text-text-muted hover:text-text-main hover:underline transition-all" href="#">Privacidad</a>
+<a class="text-text-muted hover:text-text-main hover:underline transition-all" href="#">Soporte</a>
+<a class="text-text-muted hover:text-text-main hover:underline transition-all" href="#">Términos</a>
+</div>
+<div class="text-center md:text-right">
+                © 2024 CineReservas Professional. Todos los derechos reservados.
+            </div>
+</div>
+</footer>
+</body></html>

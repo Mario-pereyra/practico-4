@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CineReservas - Detalle de Película</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#eef3ff",
+                    "border-subtle": "#E5E7EB",
+                    "background": "#f8f9fa",
+                    "on-tertiary-fixed-variant": "#00497e",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-primary-fixed-variant": "#763300",
+                    "on-background": "#191c1d",
+                    "text-muted": "#4B5563",
+                    "inverse-on-surface": "#f0f1f2",
+                    "status-reserved": "#92400E",
+                    "status-canceled": "#991B1B",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#ffb68e",
+                    "surface-tint": "#9b4500",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#596373",
+                    "status-confirmed": "#065F46",
+                    "secondary": "#555f6f",
+                    "outline": "#897267",
+                    "surface": "#f8f9fa",
+                    "tertiary-fixed": "#d2e4ff",
+                    "tertiary-fixed-dim": "#9fcaff",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#121c2a",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#ffdbca",
+                    "inverse-surface": "#2e3132",
+                    "status-available": "#1E40AF",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#005998",
+                    "surface-container-low": "#f3f4f5",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "text-main": "#111827",
+                    "surface-dim": "#d9dadb",
+                    "surface-bright": "#f8f9fa",
+                    "secondary-container": "#d6e0f3",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "tertiary-container": "#0072c0",
+                    "primary-container": "#b45309",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#331200",
+                    "outline-variant": "#ddc1b3",
+                    "on-primary-container": "#fff1eb",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-surface-variant": "#564338",
+                    "surface-container": "#edeeef",
+                    "surface-variant": "#e1e3e4",
+                    "on-surface": "#191c1d",
+                    "on-secondary": "#ffffff",
+                    "primary": "#903f00",
+                    "surface-white": "#FFFFFF",
+                    "on-tertiary-fixed": "#001d36",
+                    "surface-container-high": "#e7e8e9",
+                    "primary-fixed-dim": "#ffb68e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-sm": "0.5rem",
+                    "stack-lg": "2rem",
+                    "margin-desktop": "2rem",
+                    "container-max": "1280px",
+                    "margin-mobile": "1rem",
+                    "gutter": "1.5rem",
+                    "stack-md": "1rem"
+            },
+            "fontFamily": {
+                    "headline-lg": [
+                            "Hanken Grotesk"
+                    ],
+                    "body-sm": [
+                            "Hanken Grotesk"
+                    ],
+                    "label-lg": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-md": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-lg-mobile": [
+                            "Hanken Grotesk"
+                    ],
+                    "body-lg": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-sm": [
+                            "Hanken Grotesk"
+                    ],
+                    "label-sm": [
+                            "Hanken Grotesk"
+                    ],
+                    "body-md": [
+                            "Hanken Grotesk"
+                    ]
+            },
+            "fontSize": {
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-lg": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "28px",
+                            {
+                                    "lineHeight": "36px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-sm": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface-white border-b border-border-subtle w-full max-w-container-max mx-auto">
+<div class="flex justify-between items-center px-margin-desktop w-full h-16">
+<div class="font-headline-md text-headline-md font-bold text-primary">
+                CineReservas
+            </div>
+<nav class="hidden md:flex gap-gutter">
+<a class="font-label-lg text-label-lg text-primary border-b-2 border-primary pb-1" href="#">Cartelera</a>
+<!-- Nav items for visitor/client -->
+</nav>
+<div class="flex items-center gap-stack-md">
+<button class="font-label-lg text-label-lg text-text-muted hover:text-primary-container transition-colors">Ingresar</button>
+<button class="font-label-lg text-label-lg bg-primary text-on-primary px-4 py-2 rounded-lg hover:bg-primary-container transition-colors">Registrarse</button>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-desktop py-stack-lg flex flex-col md:flex-row gap-gutter">
+<!-- Main Content Canvas -->
+<div class="flex-grow flex flex-col gap-stack-lg w-full">
+<button class="self-start flex items-center gap-2 text-text-muted hover:text-text-main transition-colors font-label-lg text-label-lg mb-stack-md">
+<span class="material-symbols-outlined">arrow_back</span>
+                Volver a Cartelera
+            </button>
+<!-- Movie Details Bento Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Poster -->
+<div class="lg:col-span-4 rounded-xl overflow-hidden shadow-sm border border-border-subtle bg-surface-white relative aspect-[2/3]">
+<img class="w-full h-full object-cover" data-alt="A dramatic and high-quality cinematic poster for an epic science fiction movie. The poster features a sweeping, futuristic cityscape bathed in cool blue and stark white light, with a single figure looking out. The visual style is modern, sleek, and highly detailed, fitting perfectly into a clean administrative interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvZeiuH7n1ACc94GNNMQ0mmOFrOyxYvLXyDL6kmlpMFmOBSnu4TWHDefVcutsTMSqm79WDHEJybZSeExBZybJ7guZPWYpb48oN7fihgBt3Xx32Dy95vJZVIUkYdO9eCqDWiNkFPenyMfwV7I7bcfbrZey2zuCaZqzTsuHWRZMUoQes-mtsvJSpecbMc07UFvcbKcftMm0bKXIWaYS8Zjx99pdd0HOxKNsOUYHdhPE8aKRmNtx4ybCWujeRgYVe_pD2hY-qyiQZfuQ"/>
+<div class="absolute top-2 right-2 bg-surface-white/90 backdrop-blur-sm px-2 py-1 rounded font-label-sm text-label-sm text-text-main border border-border-subtle">
+                        PG-13
+                    </div>
+</div>
+<!-- Metadata & Synopsis -->
+<div class="lg:col-span-8 flex flex-col gap-stack-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-text-main mb-2">Interstellar Odyssey</h1>
+<div class="flex flex-wrap items-center gap-4 text-text-muted font-body-sm text-body-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">schedule</span> 145 min</span>
+<span class="w-1 h-1 rounded-full bg-border-subtle"></span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">movie</span> Ciencia Ficción, Drama</span>
+<span class="w-1 h-1 rounded-full bg-border-subtle"></span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">calendar_today</span> Estreno: 12/04/2024</span>
+</div>
+</div>
+<div class="bg-surface-white border border-border-subtle rounded-xl p-stack-md shadow-sm mt-stack-sm flex-grow">
+<h3 class="font-headline-sm text-headline-sm text-text-main mb-stack-sm flex items-center gap-2">
+<span class="material-symbols-outlined">menu_book</span> Sinopsis
+                        </h3>
+<p class="font-body-md text-body-md text-text-muted leading-relaxed">
+                            Un equipo de exploradores viaja a través de un agujero de gusano en el espacio en un intento por asegurar la supervivencia de la humanidad. Enfrentando mundos hostiles y el implacable paso del tiempo, deberán tomar decisiones que afectarán el destino de toda una especie mientras lidian con sus propios demonios personales y la vastedad del cosmos.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Functions List -->
+<div class="mt-stack-lg">
+<div class="flex justify-between items-end mb-stack-md border-b border-border-subtle pb-stack-sm">
+<h2 class="font-headline-md text-headline-md text-text-main flex items-center gap-2">
+<span class="material-symbols-outlined">event_seat</span> Funciones Disponibles
+                    </h2>
+<div class="flex gap-2">
+<button class="p-2 border border-border-subtle rounded hover:bg-surface-container-high transition-colors text-text-main">
+<span class="material-symbols-outlined">calendar_month</span>
+</button>
+<select class="border-border-subtle rounded text-text-main font-body-sm text-body-sm bg-surface-white focus:border-primary focus:ring-primary">
+<option>Hoy, 15 Oct</option>
+<option>Mañana, 16 Oct</option>
+<option>Jueves, 17 Oct</option>
+</select>
+</div>
+</div>
+<div class="bg-surface-white border border-border-subtle rounded-xl shadow-sm overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-border-subtle">
+<th class="p-4 font-label-sm text-label-sm text-text-main uppercase tracking-wider">Hora</th>
+<th class="p-4 font-label-sm text-label-sm text-text-main uppercase tracking-wider">Sala</th>
+<th class="p-4 font-label-sm text-label-sm text-text-main uppercase tracking-wider">Formato</th>
+<th class="p-4 font-label-sm text-label-sm text-text-main uppercase tracking-wider">Precio</th>
+<th class="p-4 font-label-sm text-label-sm text-text-main uppercase tracking-wider">Disponibilidad</th>
+<th class="p-4 text-right font-label-sm text-label-sm text-text-main uppercase tracking-wider">Acción</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="p-4 font-label-lg text-label-lg text-text-main">14:30</td>
+<td class="p-4 font-body-sm text-body-sm text-text-muted">Sala 1 - Standard</td>
+<td class="p-4"><span class="bg-surface-container px-2 py-1 rounded text-xs font-medium text-text-main border border-border-subtle">2D Subtitulada</span></td>
+<td class="p-4 font-body-md text-body-md text-text-main">Bs. 12.00</td>
+<td class="p-4">
+<div class="w-full bg-surface-container rounded-full h-2.5 max-w-[100px] mt-1 relative">
+<div class="bg-status-available h-2.5 rounded-full" style="width: 25%"></div>
+</div>
+<span class="text-xs text-text-muted mt-1 block">75% Libre</span>
+</td>
+<td class="p-4 text-right">
+<button class="bg-primary text-on-primary font-label-sm text-label-sm px-4 py-2 rounded-lg hover:bg-primary-container transition-colors shadow-sm">
+                                        Seleccionar Asientos
+                                    </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="p-4 font-label-lg text-label-lg text-text-main">17:15</td>
+<td class="p-4 font-body-sm text-body-sm text-text-muted">Sala 3 - VIP</td>
+<td class="p-4"><span class="bg-surface-container px-2 py-1 rounded text-xs font-medium text-text-main border border-border-subtle">3D Doblada</span></td>
+<td class="p-4 font-body-md text-body-md text-text-main">Bs. 18.50</td>
+<td class="p-4">
+<div class="w-full bg-surface-container rounded-full h-2.5 max-w-[100px] mt-1 relative">
+<div class="bg-status-reserved h-2.5 rounded-full" style="width: 85%"></div>
+</div>
+<span class="text-xs text-status-reserved mt-1 block">15% Libre</span>
+</td>
+<td class="p-4 text-right">
+<button class="bg-primary text-on-primary font-label-sm text-label-sm px-4 py-2 rounded-lg hover:bg-primary-container transition-colors shadow-sm">
+                                        Seleccionar Asientos
+                                    </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="p-4 font-label-lg text-label-lg text-text-main">20:00</td>
+<td class="p-4 font-body-sm text-body-sm text-text-muted">Sala 1 - Standard</td>
+<td class="p-4"><span class="bg-surface-container px-2 py-1 rounded text-xs font-medium text-text-main border border-border-subtle">2D Subtitulada</span></td>
+<td class="p-4 font-body-md text-body-md text-text-main">Bs. 12.00</td>
+<td class="p-4">
+<div class="w-full bg-surface-container rounded-full h-2.5 max-w-[100px] mt-1 relative">
+<div class="bg-status-available h-2.5 rounded-full" style="width: 45%"></div>
+</div>
+<span class="text-xs text-text-muted mt-1 block">55% Libre</span>
+</td>
+<td class="p-4 text-right">
+<button class="bg-primary text-on-primary font-label-sm text-label-sm px-4 py-2 rounded-lg hover:bg-primary-container transition-colors shadow-sm">
+                                        Seleccionar Asientos
+                                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-bright border-t border-border-subtle mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center py-stack-lg px-margin-desktop w-full max-w-container-max mx-auto">
+<div class="font-label-sm text-label-sm uppercase tracking-widest text-text-main mb-4 md:mb-0">
+                CineReservas
+            </div>
+<div class="font-body-sm text-body-sm text-text-muted text-center md:text-left mb-4 md:mb-0">
+                © 2024 CineReservas. Todos los derechos reservados.
+            </div>
+<nav class="flex gap-gutter font-body-sm text-body-sm">
+<a class="text-text-muted hover:text-primary transition-colors opacity-100" href="#">Privacidad</a>
+<a class="text-text-muted hover:text-primary transition-colors opacity-100" href="#">Términos</a>
+<a class="text-text-muted hover:text-primary transition-colors opacity-100" href="#">Contacto</a>
+</nav>
+</div>
+</footer>
+</body></html>

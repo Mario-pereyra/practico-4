@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CineAdmin - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#edeeef",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#ffb68e",
+                        "text-muted": "#4B5563",
+                        "surface": "#f8f9fa",
+                        "on-secondary-container": "#596373",
+                        "primary-container": "#b45309",
+                        "on-tertiary-container": "#eef3ff",
+                        "secondary": "#555f6f",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#0072c0",
+                        "primary-fixed": "#ffdbca",
+                        "outline": "#897267",
+                        "on-surface": "#191c1d",
+                        "surface-container-highest": "#e1e3e4",
+                        "secondary-fixed": "#d9e3f6",
+                        "surface-white": "#FFFFFF",
+                        "surface-tint": "#9b4500",
+                        "primary-fixed-dim": "#ffb68e",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "background": "#f8f9fa",
+                        "on-surface-variant": "#564338",
+                        "on-tertiary-fixed-variant": "#00497e",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "text-main": "#111827",
+                        "surface-variant": "#e1e3e4",
+                        "surface-dim": "#d9dadb",
+                        "status-available": "#1E40AF",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#fff1eb",
+                        "status-confirmed": "#065F46",
+                        "on-secondary-fixed": "#121c2a",
+                        "on-primary-fixed": "#331200",
+                        "on-background": "#191c1d",
+                        "outline-variant": "#ddc1b3",
+                        "tertiary-fixed": "#d2e4ff",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#d6e0f3",
+                        "on-tertiary-fixed": "#001d36",
+                        "tertiary": "#005998",
+                        "on-primary-fixed-variant": "#763300",
+                        "tertiary-fixed-dim": "#9fcaff",
+                        "status-canceled": "#991B1B",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-high": "#e7e8e9",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f8f9fa",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f3f4f5",
+                        "status-reserved": "#92400E",
+                        "border-subtle": "#E5E7EB",
+                        "primary": "#903f00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "1.5rem",
+                        "margin-mobile": "1rem",
+                        "container-max": "1280px",
+                        "stack-sm": "0.5rem",
+                        "stack-md": "1rem",
+                        "stack-lg": "2rem",
+                        "margin-desktop": "2rem"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "label-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; background-color: #F9FAFB; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined[data-weight="fill"] { font-variation-settings: 'FILL' 1; }
+        
+        /* Interactive subtle shadow */
+        .interactive-card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transform: translateY(-1px);
+            transition: all 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<aside class="bg-surface-container-lowest dark:bg-inverse-surface border-r border-border-subtle dark:border-outline hidden lg:flex flex-col h-screen p-stack-md docked fixed left-0 top-0 w-[280px] z-20">
+<!-- Header -->
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-10 h-10 rounded bg-primary-container flex items-center justify-center text-on-primary font-bold text-lg">
+                CA
+            </div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary">CineAdmin</h1>
+<p class="font-body-sm text-body-sm text-text-muted">Theater Management</p>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="flex-1 flex flex-col gap-1">
+<!-- Dashboard (Active) -->
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary font-semibold rounded-lg scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-lg text-label-lg">Dashboard</span>
+</a>
+<!-- Películas -->
+<a class="flex items-center gap-3 px-3 py-2 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-secondary transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">movie</span>
+<span class="font-label-lg text-label-lg">Películas</span>
+</a>
+<!-- Salas -->
+<a class="flex items-center gap-3 px-3 py-2 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-secondary transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">theater_comedy</span>
+<span class="font-label-lg text-label-lg">Salas</span>
+</a>
+<!-- Funciones -->
+<a class="flex items-center gap-3 px-3 py-2 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-secondary transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-label-lg text-label-lg">Funciones</span>
+</a>
+</nav>
+<!-- CTA -->
+<div class="mt-auto mb-6 px-2">
+<button class="w-full bg-primary-container hover:bg-primary text-on-primary font-label-lg text-label-lg py-3 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-sm">
+<span class="material-symbols-outlined">add</span>
+                Nueva Función
+            </button>
+</div>
+<!-- Footer Navigation -->
+<div class="border-t border-border-subtle dark:border-outline pt-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-secondary transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-lg text-label-lg">Ajustes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-secondary transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-lg text-label-lg">Cerrar Sesión</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-[280px] h-screen overflow-y-auto bg-surface relative flex flex-col">
+<!-- TopAppBar (Mobile & Desktop Header) -->
+<header class="bg-surface-white dark:bg-inverse-surface border-b border-border-subtle dark:border-outline flex justify-between items-center w-full px-margin-desktop h-16 sticky top-0 z-10 flat no shadows">
+<div class="flex items-center gap-4 lg:hidden">
+<button class="text-primary hover:bg-surface-container-low transition-colors p-2 rounded">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">CineAdmin</span>
+</div>
+<div class="hidden lg:block font-headline-sm text-headline-sm text-primary dark:text-inverse-primary">
+                Vista General
+            </div>
+<div class="flex items-center gap-4">
+<button class="text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-low transition-colors p-2 rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-border-subtle overflow-hidden">
+<img alt="Administrator profile" class="w-full h-full object-cover" data-alt="A professional headshot of a theater administrator in a modern, well-lit office setting, conveying trust and competence in a corporate minimal style with subtle warm amber undertones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU2tJkIJtLx4HfIBm4kT2O80Jw7IwFko_Rx4FSUXgWDDlaknoeyMEFC3_4PIFmWxd1LE4r8nA_7UHjwLOa4aq6WGqkXBKrQxsTgDGTGo3QOtPYMSNv48hhkbx5kF3IvI3uLyHLlauK21zNgMChv-JqFOfJPyENBB2goRIjhDF3ePe68v6Gt3JbBf8S-w4KxxtXXp7fPi1UzvcvjQO8IEl67eFS9SndgQ6haZCnKgxi1Ur1_QxrRe1sekvk4y52yYM8FXI-Whx0Mgw"/>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<div class="p-margin-desktop lg:p-margin-desktop max-w-container-max mx-auto w-full flex-1 flex flex-col gap-stack-lg">
+<!-- Welcome Header -->
+<div>
+<h2 class="font-headline-lg text-headline-lg text-text-main">Buenos días, Administrador</h2>
+<p class="font-body-md text-body-md text-text-muted mt-1">Aquí está el resumen operativo de hoy para el complejo cinematográfico.</p>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<!-- Metric 1 -->
+<div class="bg-surface-white border border-border-subtle rounded-xl p-stack-md flex flex-col gap-2 interactive-card">
+<div class="flex justify-between items-center">
+<span class="font-label-lg text-label-lg text-text-muted uppercase tracking-wider">Total Películas</span>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-weight="fill">movie_filter</span>
+</div>
+</div>
+<div class="font-headline-lg text-headline-lg text-text-main">24</div>
+<div class="font-body-sm text-body-sm text-status-confirmed flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+<span>+2 esta semana</span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-white border border-border-subtle rounded-xl p-stack-md flex flex-col gap-2 interactive-card">
+<div class="flex justify-between items-center">
+<span class="font-label-lg text-label-lg text-text-muted uppercase tracking-wider">Salas Activas</span>
+<div class="w-8 h-8 rounded-full bg-status-available/10 flex items-center justify-center text-status-available">
+<span class="material-symbols-outlined" data-weight="fill">chair</span>
+</div>
+</div>
+<div class="font-headline-lg text-headline-lg text-text-main">12 <span class="font-headline-sm text-text-muted">/ 14</span></div>
+<div class="font-body-sm text-body-sm text-status-reserved flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span>2 en mantenimiento</span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-white border border-border-subtle rounded-xl p-stack-md flex flex-col gap-2 interactive-card">
+<div class="flex justify-between items-center">
+<span class="font-label-lg text-label-lg text-text-muted uppercase tracking-wider">Funciones de Hoy</span>
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined" data-weight="fill">event_seat</span>
+</div>
+</div>
+<div class="font-headline-lg text-headline-lg text-text-main">48</div>
+<div class="font-body-sm text-body-sm text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>Próxima en 15 min</span>
+</div>
+</div>
+</div>
+<!-- Main Layout Split -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-stack-lg">
+<!-- Quick Actions (Bento Style) -->
+<div class="lg:col-span-2 flex flex-col gap-stack-md">
+<h3 class="font-headline-sm text-headline-sm text-text-main border-b border-border-subtle pb-2">Accesos Rápidos</h3>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-stack-md h-full">
+<button class="group bg-surface-white border border-border-subtle hover:border-primary-container rounded-xl p-stack-md flex flex-col items-center justify-center gap-4 interactive-card h-48 transition-all relative overflow-hidden">
+<div class="absolute inset-0 bg-primary-container/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-secondary group-hover:bg-primary-container group-hover:text-on-primary transition-colors relative z-10">
+<span class="material-symbols-outlined text-[32px]">add_circle</span>
+</div>
+<span class="font-label-lg text-label-lg text-text-main relative z-10">Nueva Película</span>
+</button>
+<button class="group bg-surface-white border border-border-subtle hover:border-primary-container rounded-xl p-stack-md flex flex-col items-center justify-center gap-4 interactive-card h-48 transition-all relative overflow-hidden">
+<div class="absolute inset-0 bg-primary-container/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-secondary group-hover:bg-primary-container group-hover:text-on-primary transition-colors relative z-10">
+<span class="material-symbols-outlined text-[32px]">domain_add</span>
+</div>
+<span class="font-label-lg text-label-lg text-text-main relative z-10">Nueva Sala</span>
+</button>
+<button class="group bg-primary-container text-on-primary border border-transparent rounded-xl p-stack-md flex flex-col items-center justify-center gap-4 interactive-card h-48 transition-all relative overflow-hidden shadow-sm hover:bg-primary">
+<div class="w-16 h-16 rounded-full bg-on-primary/20 flex items-center justify-center relative z-10">
+<span class="material-symbols-outlined text-[32px]">playlist_add</span>
+</div>
+<span class="font-label-lg text-label-lg relative z-10">Nueva Función</span>
+</button>
+</div>
+</div>
+<!-- System Reminders -->
+<div class="lg:col-span-1 flex flex-col gap-stack-md">
+<h3 class="font-headline-sm text-headline-sm text-text-main border-b border-border-subtle pb-2">Recordatorios del Sistema</h3>
+<div class="bg-status-reserved/10 border-l-4 border-status-reserved rounded-r-lg p-stack-md flex gap-3">
+<span class="material-symbols-outlined text-status-reserved shrink-0 mt-1">warning</span>
+<div>
+<h4 class="font-label-lg text-label-lg text-status-reserved mb-1">Regla Crítica: Limpieza</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                                Es obligatorio programar un margen mínimo de <strong>15 minutos</strong> entre funciones en la misma sala para labores de limpieza y sanitización.
+                            </p>
+</div>
+</div>
+<div class="bg-surface-white border border-border-subtle rounded-lg p-stack-md flex gap-3 mt-2">
+<span class="material-symbols-outlined text-tertiary shrink-0 mt-1">info</span>
+<div>
+<h4 class="font-label-lg text-label-lg text-text-main mb-1">Actualización de Cartelera</h4>
+<p class="font-body-sm text-body-sm text-text-muted">
+                                Los nuevos estrenos deben confirmarse antes del jueves a las 10:00 AM para sincronización con taquillas.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

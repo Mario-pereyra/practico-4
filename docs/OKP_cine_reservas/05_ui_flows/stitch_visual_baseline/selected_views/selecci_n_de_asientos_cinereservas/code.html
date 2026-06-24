@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CineReservas - Selección de Asientos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#d9e3f6",
+                        "primary-container": "#b45309",
+                        "text-main": "#111827",
+                        "primary-fixed-dim": "#ffb68e",
+                        "on-surface-variant": "#564338",
+                        "error": "#ba1a1a",
+                        "surface-container": "#edeeef",
+                        "secondary-container": "#d6e0f3",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "on-secondary-container": "#596373",
+                        "secondary": "#555f6f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "on-primary-fixed-variant": "#763300",
+                        "tertiary-fixed": "#d2e4ff",
+                        "surface-container-high": "#e7e8e9",
+                        "on-surface": "#191c1d",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "status-available": "#1E40AF",
+                        "text-muted": "#4B5563",
+                        "surface-white": "#FFFFFF",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "primary": "#903f00",
+                        "outline-variant": "#ddc1b3",
+                        "status-reserved": "#92400E",
+                        "status-confirmed": "#065F46",
+                        "inverse-on-surface": "#f0f1f2",
+                        "tertiary-fixed-dim": "#9fcaff",
+                        "surface-variant": "#e1e3e4",
+                        "on-background": "#191c1d",
+                        "on-primary-fixed": "#331200",
+                        "inverse-primary": "#ffb68e",
+                        "tertiary": "#005998",
+                        "tertiary-container": "#0072c0",
+                        "status-canceled": "#991B1B",
+                        "primary-fixed": "#ffdbca",
+                        "background": "#f8f9fa",
+                        "surface-dim": "#d9dadb",
+                        "surface-container-low": "#f3f4f5",
+                        "on-tertiary-container": "#eef3ff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#121c2a",
+                        "outline": "#897267",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#9b4500",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary-fixed": "#001d36",
+                        "on-primary-container": "#fff1eb",
+                        "on-tertiary-fixed-variant": "#00497e",
+                        "border-subtle": "#E5E7EB",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "0.5rem",
+                        "stack-md": "1rem",
+                        "margin-mobile": "1rem",
+                        "margin-desktop": "2rem",
+                        "container-max": "1280px",
+                        "gutter": "1.5rem",
+                        "stack-lg": "2rem"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "label-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .seat-btn { transition: all 0.2s ease; }
+        .seat-available { background-color: #ffffff; border: 1px solid #E5E7EB; color: #111827; }
+        .seat-available:hover { border-color: #b45309; transform: scale(1.05); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+        .seat-selected { background-color: #b45309; border: 1px solid #b45309; color: #ffffff; }
+        .seat-occupied { background-color: #9ca3af; border: 1px solid #9ca3af; color: #ffffff; cursor: not-allowed; opacity: 0.6; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface-white border-b border-border-subtle docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-6">
+<span class="font-headline-md text-headline-md font-bold text-primary">CineReservas</span>
+<nav class="hidden md:flex gap-4">
+<a class="text-secondary hover:text-primary pb-1 font-label-lg text-label-lg transition-colors duration-200" href="#">Cartelera</a>
+<a class="text-primary border-b-2 border-primary font-bold pb-1 font-label-lg text-label-lg transition-colors duration-200" href="#">Mis Reservas</a>
+</nav>
+</div>
+<div class="flex items-center gap-4 text-primary">
+<button class="hover:bg-surface-container-low p-2 rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</button>
+<button class="hover:bg-surface-container-low p-2 rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<div class="flex-1 flex overflow-hidden">
+<!-- Main Content -->
+<main class="flex-1 flex flex-col lg:flex-row max-w-container-max mx-auto w-full p-margin-desktop gap-gutter overflow-y-auto">
+<!-- Left Side: Seat Map -->
+<div class="flex-1 flex flex-col bg-surface-white border border-border-subtle rounded-xl p-stack-lg shadow-sm">
+<!-- 409 Conflict Alert -->
+<div class="mb-stack-md bg-error-container text-on-error-container p-4 rounded-lg flex items-center gap-3">
+<span class="material-symbols-outlined">warning</span>
+<span class="font-body-sm text-body-sm">Uno o más asientos ya fueron reservados. Actualiza la selección.</span>
+</div>
+<!-- Movie Header -->
+<div class="mb-stack-lg border-b border-border-subtle pb-stack-md flex justify-between items-start">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-text-main mb-2">El Códice de Ópalo</h1>
+<div class="flex items-center gap-4 text-text-muted font-body-sm text-body-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">calendar_today</span> 24 Oct</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">schedule</span> 18:30</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">theater_comedy</span> Sala 3 - VIP</span>
+</div>
+</div>
+<div class="text-right">
+<span class="block font-label-sm text-label-sm text-text-muted uppercase">Precio Base</span>
+<span class="font-headline-md text-headline-md font-bold text-primary-container">Bs. 12.50</span>
+</div>
+</div>
+<!-- Screen Indicator -->
+<div class="w-full mb-12 relative flex justify-center">
+<div class="w-3/4 h-8 bg-surface-container-low border-t-4 border-outline-variant rounded-t-full shadow-[0_-10px_20px_rgba(0,0,0,0.05)] flex items-center justify-center">
+<span class="font-label-sm text-label-sm text-text-muted uppercase tracking-widest">Pantalla</span>
+</div>
+</div>
+<!-- Seat Grid -->
+<div class="flex justify-center flex-1 overflow-x-auto">
+<div class="flex flex-col gap-3 min-w-max">
+<!-- Rows -->
+<script>
+                            const rows = ['A', 'B', 'C', 'D', 'E', 'F'];
+                            const cols = 10;
+                            // Pre-defined seat states for demonstration
+                            const occupiedSeats = ['B4', 'B5', 'D8', 'E2', 'E3', 'E4'];
+                            const selectedSeats = ['C5', 'C6'];
+
+                            rows.forEach(row => {
+                                document.write(`<div class="flex items-center gap-3">`);
+                                document.write(`<span class="w-6 text-center font-label-sm text-label-sm text-text-muted">${row}</span>`);
+                                
+                                document.write(`<div class="flex gap-2">`);
+                                // Left block (1-3)
+                                for(let i=1; i<=3; i++) {
+                                    let seatId = `${row}${i}`;
+                                    let stateClass = occupiedSeats.includes(seatId) ? 'seat-occupied' : (selectedSeats.includes(seatId) ? 'seat-selected' : 'seat-available');
+                                    let disabled = occupiedSeats.includes(seatId) ? 'disabled' : '';
+                                    document.write(`<button class="w-8 h-8 rounded-t-lg rounded-b-sm seat-btn ${stateClass} font-label-sm text-label-sm flex items-center justify-center" ${disabled} data-seat="${seatId}">${i}</button>`);
+                                }
+                                document.write(`</div>`);
+                                
+                                // Aisle
+                                document.write(`<div class="w-6"></div>`);
+
+                                document.write(`<div class="flex gap-2">`);
+                                // Middle block (4-7)
+                                for(let i=4; i<=7; i++) {
+                                    let seatId = `${row}${i}`;
+                                    let stateClass = occupiedSeats.includes(seatId) ? 'seat-occupied' : (selectedSeats.includes(seatId) ? 'seat-selected' : 'seat-available');
+                                    let disabled = occupiedSeats.includes(seatId) ? 'disabled' : '';
+                                    document.write(`<button class="w-8 h-8 rounded-t-lg rounded-b-sm seat-btn ${stateClass} font-label-sm text-label-sm flex items-center justify-center" ${disabled} data-seat="${seatId}">${i}</button>`);
+                                }
+                                document.write(`</div>`);
+
+                                // Aisle
+                                document.write(`<div class="w-6"></div>`);
+
+                                document.write(`<div class="flex gap-2">`);
+                                // Right block (8-10)
+                                for(let i=8; i<=10; i++) {
+                                    let seatId = `${row}${i}`;
+                                    let stateClass = occupiedSeats.includes(seatId) ? 'seat-occupied' : (selectedSeats.includes(seatId) ? 'seat-selected' : 'seat-available');
+                                    let disabled = occupiedSeats.includes(seatId) ? 'disabled' : '';
+                                    document.write(`<button class="w-8 h-8 rounded-t-lg rounded-b-sm seat-btn ${stateClass} font-label-sm text-label-sm flex items-center justify-center" ${disabled} data-seat="${seatId}">${i}</button>`);
+                                }
+                                document.write(`</div>`);
+
+                                document.write(`<span class="w-6 text-center font-label-sm text-label-sm text-text-muted">${row}</span>`);
+                                document.write(`</div>`);
+                            });
+                        </script>
+</div>
+</div>
+<!-- Legend -->
+<div class="mt-stack-lg flex justify-center gap-8 border-t border-border-subtle pt-stack-md">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-t-md rounded-b-sm seat-available"></div>
+<span class="font-body-sm text-body-sm text-text-muted">Disponible</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-t-md rounded-b-sm seat-selected"></div>
+<span class="font-body-sm text-body-sm text-text-muted">Seleccionado</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-t-md rounded-b-sm seat-occupied"></div>
+<span class="font-body-sm text-body-sm text-text-muted">Reservado</span>
+</div>
+</div>
+</div>
+<!-- Right Side: Summary Panel -->
+<div class="w-full lg:w-80 flex flex-col gap-stack-md">
+<div class="bg-surface-white border border-border-subtle rounded-xl p-stack-lg shadow-sm flex-1">
+<h2 class="font-headline-sm text-headline-sm text-text-main mb-stack-md pb-stack-sm border-b border-border-subtle">Resumen de Reserva</h2>
+<div class="flex flex-col gap-4 mb-6">
+<div>
+<span class="block font-label-sm text-label-sm text-text-muted uppercase mb-1">Asientos Seleccionados</span>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-surface-container-low border border-border-subtle rounded font-body-sm text-body-sm text-text-main">C5</span>
+<span class="px-2 py-1 bg-surface-container-low border border-border-subtle rounded font-body-sm text-body-sm text-text-main">C6</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-text-muted">Cantidad total</span>
+<span class="font-label-lg text-label-lg text-text-main">2</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-text-muted">Precio unitario</span>
+<span class="font-body-sm text-body-sm text-text-main">Bs. 12.50</span>
+</div>
+</div>
+<div class="border-t border-border-subtle pt-4 mb-6">
+<div class="flex justify-between items-end">
+<span class="font-body-lg text-body-lg text-text-main font-semibold">Total a pagar</span>
+<span class="font-headline-lg text-headline-lg text-primary-container">Bs. 25.00</span>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary font-label-lg text-label-lg py-3 rounded-lg hover:bg-surface-tint transition-colors duration-200 shadow-sm flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed" id="confirm-btn">
+                        Confirmar reserva
+                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<button class="w-full mt-2 bg-transparent text-text-main font-label-lg text-label-lg py-3 rounded-lg hover:bg-surface-container-low transition-colors duration-200">
+                        Cancelar
+                    </button>
+</div>
+<!-- Mini Poster / Info Box (Optional Bento addition) -->
+<div class="bg-surface-white border border-border-subtle rounded-xl p-stack-md flex items-center gap-4 shadow-sm relative overflow-hidden">
+<div class="w-16 h-24 rounded border border-border-subtle overflow-hidden flex-shrink-0 bg-surface-container-highest">
+<div class="w-full h-full bg-cover bg-center" data-alt="A moody, high-contrast digital illustration of an ancient glowing opal codex resting on a stone pedestal in a dark, mysterious templar vault. Cinematic lighting, rich textures, academic administrative aesthetic. Vertical poster format." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDvGqk9hxWnY3noHB1xMuSlQKoh8diHcLbPzjd4SDFhojK3Gn36LFZlsyy2yxDlRJWdZQ8zlIbv6o30L-1_p_9HhH-aOXG5XSnOZvX0OZkEXX0f493kOg7WN9feAQ85JWtVWaxWeyxjcEylZ01xnlaaDoDr59cFXGOUiquScU1y7PRfwNPlp7X7uF1sGbZE1c4y2sDo9K4l_zRXvzndvtAT_ZU8rdnbvpTS3rGDTFg53sI7R953LlXgqOCBNsK67B0uilgmZNsvptc')"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted uppercase mb-1">En proyección</span>
+<span class="font-label-lg text-label-lg text-text-main leading-tight">El Códice de Ópalo</span>
+<span class="font-body-sm text-body-sm text-text-muted mt-1">120 min • Fantasía</span>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+        // Simple interactivity for demonstration
+        const confirmBtn = document.getElementById('confirm-btn');
+
+        function updateConfirmState() {
+            const selectedSeats = document.querySelectorAll('.seat-selected').length;
+            if (selectedSeats === 0) {
+                confirmBtn.disabled = true;
+                confirmBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                confirmBtn.disabled = false;
+                confirmBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        document.querySelectorAll('.seat-btn').forEach(seat => {
+            if (!seat.classList.contains('seat-occupied')) {
+                seat.addEventListener('click', function() {
+                    if(this.classList.contains('seat-selected')) {
+                        this.classList.remove('seat-selected');
+                        this.classList.add('seat-available');
+                    } else {
+                        this.classList.remove('seat-available');
+                        this.classList.add('seat-selected');
+                    }
+                    updateConfirmState();
+                });
+            }
+        });
+
+        // Initialize state
+        updateConfirmState();
+    </script>
+</body></html>

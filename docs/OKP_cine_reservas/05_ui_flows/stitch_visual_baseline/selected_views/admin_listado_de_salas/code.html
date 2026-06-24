@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CineAdmin - Salas</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container": "#edeeef",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#ffb68e",
+                        "text-muted": "#4B5563",
+                        "surface": "#f8f9fa",
+                        "on-secondary-container": "#596373",
+                        "primary-container": "#b45309",
+                        "on-tertiary-container": "#eef3ff",
+                        "secondary": "#555f6f",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#0072c0",
+                        "primary-fixed": "#ffdbca",
+                        "outline": "#897267",
+                        "on-surface": "#191c1d",
+                        "surface-container-highest": "#e1e3e4",
+                        "secondary-fixed": "#d9e3f6",
+                        "surface-white": "#FFFFFF",
+                        "surface-tint": "#9b4500",
+                        "primary-fixed-dim": "#ffb68e",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "background": "#f8f9fa",
+                        "on-surface-variant": "#564338",
+                        "on-tertiary-fixed-variant": "#00497e",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "text-main": "#111827",
+                        "surface-variant": "#e1e3e4",
+                        "surface-dim": "#d9dadb",
+                        "status-available": "#1E40AF",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#fff1eb",
+                        "status-confirmed": "#065F46",
+                        "on-secondary-fixed": "#121c2a",
+                        "on-primary-fixed": "#331200",
+                        "on-background": "#191c1d",
+                        "outline-variant": "#ddc1b3",
+                        "tertiary-fixed": "#d2e4ff",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#d6e0f3",
+                        "on-tertiary-fixed": "#001d36",
+                        "tertiary": "#005998",
+                        "on-primary-fixed-variant": "#763300",
+                        "tertiary-fixed-dim": "#9fcaff",
+                        "status-canceled": "#991B1B",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-high": "#e7e8e9",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f8f9fa",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f3f4f5",
+                        "status-reserved": "#92400E",
+                        "border-subtle": "#E5E7EB",
+                        "primary": "#903f00"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "gutter": "1.5rem",
+                        "margin-mobile": "1rem",
+                        "container-max": "1280px",
+                        "stack-sm": "0.5rem",
+                        "stack-md": "1rem",
+                        "stack-lg": "2rem",
+                        "margin-desktop": "2rem"
+                    },
+                    fontFamily: {
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "label-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"]
+                    },
+                    fontSize: {
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "headline-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }],
+                        "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-lowest dark:bg-inverse-surface border-r border-border-subtle dark:border-outline hidden lg:flex flex-col h-screen p-stack-md w-[280px] shrink-0">
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center font-bold font-headline-sm text-headline-sm">
+                CA
+            </div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary">CineAdmin</h1>
+<p class="font-label-sm text-label-sm text-text-muted">Theater Management</p>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary rounded-lg py-2 px-4 font-label-lg text-label-lg flex items-center justify-center gap-2 mb-8 hover:bg-surface-tint transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+            Nueva Función
+        </button>
+<ul class="flex flex-col gap-1 flex-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container font-label-lg text-label-lg transition-all hover:bg-surface-container-high dark:hover:bg-secondary" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container font-label-lg text-label-lg transition-all hover:bg-surface-container-high dark:hover:bg-secondary" href="#">
+<span class="material-symbols-outlined">movie</span>
+                    Películas
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary font-semibold font-label-lg text-label-lg scale-95 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">theater_comedy</span>
+                    Salas
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container font-label-lg text-label-lg transition-all hover:bg-surface-container-high dark:hover:bg-secondary" href="#">
+<span class="material-symbols-outlined">schedule</span>
+                    Funciones
+                </a>
+</li>
+</ul>
+<ul class="flex flex-col gap-1 mt-auto border-t border-border-subtle pt-4">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container font-label-lg text-label-lg transition-all hover:bg-surface-container-high dark:hover:bg-secondary" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    Ajustes
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container font-label-lg text-label-lg transition-all hover:bg-surface-container-high dark:hover:bg-secondary" href="#">
+<span class="material-symbols-outlined">logout</span>
+                    Cerrar Sesión
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden">
+<!-- TopNavBar (Mobile Only) -->
+<header class="bg-surface-white dark:bg-inverse-surface border-b border-border-subtle dark:border-outline flex lg:hidden justify-between items-center w-full px-margin-desktop h-16 shrink-0">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">menu</span>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">CineAdmin</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary hover:bg-surface-container-low transition-colors cursor-pointer p-1 rounded-full">notifications</span>
+<img class="w-8 h-8 rounded-full object-cover border border-border-subtle" data-alt="A small, professional headshot of an administrator in a corporate setting, soft lighting, neutral background, used as a profile avatar in a light-mode admin dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN43yLRppjaJb_bW1pgvM202fQp9IDUfzcHNDOYbsWot_M54BeiYLmyHObmyxDcTrs8yB4um96aHBfil9krpcG6vcZuRjW3PsEKArC2bQ5D00ib1IlV8L0xfJBBKABooEjqq9KJvoy4H-F1faQHqdTTN1c7VD5OhizjJD74b54PpotxKJBy7HZveDXJfPwQ9mWR9am1QDPgPByCPgSQwS-cE-zmqAXKYEEJy1uD3WUQuFZITaY1OMZCtRqIRjzps-ZoilxOFrXPJI"/>
+</div>
+</header>
+<!-- TopNavBar (Desktop) -->
+<header class="bg-surface-white dark:bg-inverse-surface border-b border-border-subtle dark:border-outline hidden lg:flex justify-between items-center w-full px-margin-desktop h-16 shrink-0">
+<div class="flex items-center gap-4 w-1/3">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-border-subtle rounded-lg font-body-sm text-body-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-on-surface" placeholder="Buscar..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary hover:bg-surface-container-low transition-colors cursor-pointer p-2 rounded-full">notifications</span>
+<span class="material-symbols-outlined text-secondary hover:bg-surface-container-low transition-colors cursor-pointer p-2 rounded-full">settings</span>
+<div class="h-8 w-px bg-border-subtle mx-2"></div>
+<img class="w-8 h-8 rounded-full object-cover border border-border-subtle cursor-pointer hover:opacity-80 transition-opacity" data-alt="A small, professional headshot of an administrator in a corporate setting, soft lighting, neutral background, used as a profile avatar in a light-mode admin dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqFQqcmb9gjIK4CjpCTjBclHo7U0M0W7jTz7HRS1CBQaG5R5bFZxz22IHvHeNHLZxUxMAJ1lSQoIJYu-fGJJVsV8PGGExQx_Ua0ITtc-YJf8DFm8qpndEKkhBcALeJA9o56xSclNSoTzL_WHaIijxcEmXzQ51erktnvhjVaMD9xZR4FfiIP3NCXKxAExFKwV_MD5-FohA3zrubQ3zHWR4GmLJzoJhGEG9x-X5oA8CKRoPpdfHo4XYAyalIYnDg-3npu7CGr5w9P5g"/>
+</div>
+</header>
+<!-- Page Content -->
+<div class="flex-1 overflow-y-auto p-margin-desktop bg-surface">
+<div class="max-w-container-max mx-auto">
+<!-- Page Header -->
+<div class="flex justify-between items-center mb-stack-lg">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Salas</h2>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">Gestión y configuración de espacios de proyección.</p>
+</div>
+<button class="bg-primary-container text-on-primary rounded-lg py-2 px-4 font-label-lg text-label-lg flex items-center gap-2 hover:bg-surface-tint transition-colors shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+                        Nueva Sala
+                    </button>
+</div>
+<!-- Admin Table Container -->
+<div class="bg-surface-white border border-border-subtle rounded-xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-border-subtle">
+<th class="p-4 font-label-sm text-label-sm text-text-main uppercase tracking-wider">Nombre de Sala</th>
+<th class="p-4 font-label-sm text-label-sm text-text-main uppercase tracking-wider text-right">Filas</th>
+<th class="p-4 font-label-sm text-label-sm text-text-main uppercase tracking-wider text-right">Columnas</th>
+<th class="p-4 font-label-sm text-label-sm text-text-main uppercase tracking-wider text-right">Capacidad Total</th>
+<th class="p-4 font-label-sm text-label-sm text-text-main uppercase tracking-wider text-right">Estado</th>
+<th class="p-4 font-label-sm text-label-sm text-text-main uppercase tracking-wider text-center">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle font-body-sm text-body-sm text-on-surface">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="p-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-low border border-border-subtle flex items-center justify-center text-text-muted">
+<span class="material-symbols-outlined text-sm">tv</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Sala 1 - IMAX</span>
+</td>
+<td class="p-4 text-right text-text-muted">15</td>
+<td class="p-4 text-right text-text-muted">20</td>
+<td class="p-4 text-right font-label-lg text-label-lg">300</td>
+<td class="p-4 text-right">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-status-confirmed/10 text-status-confirmed font-label-sm text-label-sm">
+                                            Operativa
+                                        </span>
+</td>
+<td class="p-4">
+<div class="flex items-center justify-center gap-2">
+<button class="p-1.5 text-secondary hover:text-primary hover:bg-surface-container-low rounded transition-colors" title="Ver Asientos">
+<span class="material-symbols-outlined text-[20px]">apps</span>
+</button>
+<button class="p-1.5 text-secondary hover:text-primary hover:bg-surface-container-low rounded transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-secondary hover:text-error hover:bg-error-container rounded transition-colors" title="Eliminar">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="p-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-low border border-border-subtle flex items-center justify-center text-text-muted">
+<span class="material-symbols-outlined text-sm">tv</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Sala 2 - 3D</span>
+</td>
+<td class="p-4 text-right text-text-muted">12</td>
+<td class="p-4 text-right text-text-muted">18</td>
+<td class="p-4 text-right font-label-lg text-label-lg">216</td>
+<td class="p-4 text-right">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-status-confirmed/10 text-status-confirmed font-label-sm text-label-sm">
+                                            Operativa
+                                        </span>
+</td>
+<td class="p-4">
+<div class="flex items-center justify-center gap-2">
+<button class="p-1.5 text-secondary hover:text-primary hover:bg-surface-container-low rounded transition-colors" title="Ver Asientos">
+<span class="material-symbols-outlined text-[20px]">apps</span>
+</button>
+<button class="p-1.5 text-secondary hover:text-primary hover:bg-surface-container-low rounded transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-secondary hover:text-error hover:bg-error-container rounded transition-colors" title="Eliminar">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors bg-surface-container-low/30">
+<td class="p-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-low border border-border-subtle flex items-center justify-center text-text-muted">
+<span class="material-symbols-outlined text-sm">tv</span>
+</div>
+<span class="font-label-lg text-label-lg text-text-muted">Sala 3 - Estándar</span>
+</td>
+<td class="p-4 text-right text-text-muted">10</td>
+<td class="p-4 text-right text-text-muted">15</td>
+<td class="p-4 text-right font-label-lg text-label-lg text-text-muted">150</td>
+<td class="p-4 text-right">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-status-canceled/10 text-status-canceled font-label-sm text-label-sm">
+                                            Mantenimiento
+                                        </span>
+</td>
+<td class="p-4">
+<div class="flex items-center justify-center gap-2">
+<button class="p-1.5 text-secondary hover:text-primary hover:bg-surface-container-low rounded transition-colors" title="Ver Asientos">
+<span class="material-symbols-outlined text-[20px]">apps</span>
+</button>
+<button class="p-1.5 text-secondary hover:text-primary hover:bg-surface-container-low rounded transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-secondary hover:text-error hover:bg-error-container rounded transition-colors" title="Eliminar">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="p-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-low border border-border-subtle flex items-center justify-center text-text-muted">
+<span class="material-symbols-outlined text-sm">chair_alt</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Sala 4 - VIP</span>
+</td>
+<td class="p-4 text-right text-text-muted">8</td>
+<td class="p-4 text-right text-text-muted">10</td>
+<td class="p-4 text-right font-label-lg text-label-lg">80</td>
+<td class="p-4 text-right">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-status-confirmed/10 text-status-confirmed font-label-sm text-label-sm">
+                                            Operativa
+                                        </span>
+</td>
+<td class="p-4">
+<div class="flex items-center justify-center gap-2">
+<button class="p-1.5 text-secondary hover:text-primary hover:bg-surface-container-low rounded transition-colors" title="Ver Asientos">
+<span class="material-symbols-outlined text-[20px]">apps</span>
+</button>
+<button class="p-1.5 text-secondary hover:text-primary hover:bg-surface-container-low rounded transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-secondary hover:text-error hover:bg-error-container rounded transition-colors" title="Eliminar">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="bg-surface-white border-t border-border-subtle p-4 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-text-muted">Mostrando 1 a 4 de 4 salas</span>
+<div class="flex gap-2">
+<button class="px-3 py-1 border border-border-subtle rounded text-text-muted bg-surface-container-low cursor-not-allowed font-body-sm text-body-sm" disabled="">Anterior</button>
+<button class="px-3 py-1 border border-border-subtle rounded text-text-muted bg-surface-container-low cursor-not-allowed font-body-sm text-body-sm" disabled="">Siguiente</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
