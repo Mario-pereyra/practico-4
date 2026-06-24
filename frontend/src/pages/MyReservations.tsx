@@ -4,12 +4,11 @@ import { Ticket, Calendar, Armchair, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface ReservationSeat {
-  id: string;
+  seatId: string;
+  rowLabel: string;
+  columnNumber: number;
+  code: string;
   unitPrice: number;
-  seat: {
-    id: string;
-    code: string;
-  };
 }
 
 interface Reservation {
@@ -18,16 +17,17 @@ interface Reservation {
   total: number;
   currency: string;
   showtime: {
+    id: string;
+    movieId: string;
+    movieTitle: string;
+    roomId: string;
+    roomName: string;
     startsAt: string;
-    movie: {
-      title: string;
-      posterUrl: string;
-    };
-    room: {
-      name: string;
-    };
+    endsAt: string;
+    price: number;
+    currency: string;
   };
-  details: ReservationSeat[];
+  seats: ReservationSeat[];
 }
 
 export const MyReservations: React.FC = () => {
@@ -105,10 +105,8 @@ export const MyReservations: React.FC = () => {
               minute: '2-digit',
             });
 
-            const seatCodes = res.details.map((d) => d.seat.code).join(', ');
-            const posterSrc = res.showtime.movie.posterUrl.startsWith('http')
-              ? res.showtime.movie.posterUrl
-              : `${API_URL}${res.showtime.movie.posterUrl}`;
+            const seatCodes = res.seats.map((s) => s.code).join(', ');
+            const posterSrc = 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500';
 
             return (
               <div key={res.id} className="reservation-item">
@@ -116,7 +114,7 @@ export const MyReservations: React.FC = () => {
                   <img
                     src={posterSrc}
                     className="reservation-movie-poster"
-                    alt={res.showtime.movie.title}
+                    alt={res.showtime.movieTitle}
                     onError={(e) => {
                       (e.target as HTMLImageElement).src =
                         'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500';
@@ -125,7 +123,7 @@ export const MyReservations: React.FC = () => {
                 </div>
 
                 <div className="reservation-details">
-                  <h3 className="reservation-movie-title">{res.showtime.movie.title}</h3>
+                  <h3 className="reservation-movie-title">{res.showtime.movieTitle}</h3>
                   
                   <div className="reservation-info-row">
                     <span className="flex-gap-sm">
@@ -134,7 +132,7 @@ export const MyReservations: React.FC = () => {
                     </span>
                     <span className="flex-gap-sm">
                       <Armchair size={14} />
-                      {res.showtime.room.name}
+                      {res.showtime.roomName}
                     </span>
                   </div>
 
